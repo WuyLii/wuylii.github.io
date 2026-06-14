@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ký Ức Của Huy và Vy 💕</title>
+
+  <!-- ================================================
+       GOOGLE FONTS - Hỗ trợ đầy đủ tiếng Việt
+       - Playfair Display: serif đẹp, có subset=vietnamese
+       - Be Vietnam Pro: sans-serif chuẩn tiếng Việt
+       ================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    /* Import font trực tiếp - đảm bảo tiếng Việt đúng */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Be+Vietnam+Pro:wght@300;400;500;600&subset=vietnamese&display=swap');
+  </style>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ====================================================
+       KHU VỰC VIDEO NỀN CHÍNH
+       ==================================================== -->
+  <div class="video-background" id="videoBg">
+    <!-- Video nền cinematic - autoplay, loop, muted, playsinline -->
+    <video
+      id="heroVideo"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
+    >
+      <!-- Thay đường dẫn này bằng video thực tế của bạn -->
+      <source src="assets/nen(test).mp4" type="video/mp4" />
+      <!-- Fallback nếu video không tải được -->
+      Your browser does not support video playback.
+    </video>
+
+    <!-- Overlay mờ rất nhẹ để text dễ đọc hơn (chỉ 12% opacity) -->
+    <div class="video-overlay"></div>
+  </div>
+
+  <!-- ====================================================
+       THANH ĐIỀU HƯỚNG (NAVIGATION BAR)
+       ==================================================== -->
+  <nav class="navbar" id="navbar">
+    <!-- Logo / Tên đôi bên trái -->
+    <div class="nav-logo">
+      <span class="logo-initials">Huy & Vy</span>
+      <span class="logo-heart">♡</span>
+    </div>
+
+    <!-- Menu điều hướng bên phải -->
+    <ul class="nav-menu">
+      <li>
+        <a href="#love-counter" class="nav-link" onclick="smoothScroll('#love-counter')">
+          Đếm Ngày Yêu
+        </a>
+      </li>
+      <li>
+        <a href="#timeline" class="nav-link" onclick="smoothScroll('#timeline')">
+          Dòng Thời Gian
+        </a>
+      </li>
+    </ul>
+
+    <!-- Nút mở bảng quản lý ảnh/video (Admin Panel) -->
+    <button class="nav-admin-btn" id="openAdminBtn" title="Quản lý kỷ niệm">
+      ✦ Quản Lý
+    </button>
+  </nav>
+
+  <!-- ====================================================
+       KHU VỰC HERO SECTION
+       ==================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="hero-content">
+      <!-- Nhãn nhỏ phía trên tiêu đề -->
+      <span class="hero-eyebrow fade-rise delay-1">✦ Câu chuyện cổ tích Huy & Bill ✦</span>
+
+      <!-- Tiêu đề lớn với từ nổi bật màu lavender -->
+      <h1 class="hero-title fade-rise delay-2">
+        Lưu trữ từng ngày<br />
+        Thương yêu từng giờ<br />
+        <em class="highlight">ký ức đẹp từng giây</em>
+      </h1>
+
+      <!-- Mô tả ngắn lãng mạn -->
+      <p class="hero-description fade-rise delay-3">
+        Nơi lưu trữ riêng dành cho anh và em <br />
+        Từng nụ cười, từng ánh mắt, từng giây phút bình yên nhất.
+      </p>
+
+      <!-- Nút CTA glassmorphism -->
+      <button class="hero-cta fade-rise delay-4" onclick="smoothScroll('#timeline')">
+        <span>Xem Hành Trình</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mũi tên cuộn xuống -->
+    <div class="hero-scroll-hint fade-rise delay-5">
+      <div class="scroll-arrow">↓</div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       KHU VỰC ĐẾM NGÀY YÊU (LOVE COUNTER SECTION)
+       ==================================================== -->
+  <section class="love-counter-section" id="love-counter">
+    <div class="section-inner">
+      <!-- Tiêu đề section -->
+      <div class="section-header">
+        <span class="section-eyebrow">♡ Tình Yêu Của Huy & Vy</span>
+        <h2 class="section-title">Đếm Đếm Đếm</h2>
+        <p class="section-subtitle">
+          Chúng mình đã bên nhau kể từ ngày <strong>11 tháng 7, 2025</strong>
+        </p>
+      </div>
+
+      <!-- Khung ảnh tròn đôi - click để thay ảnh -->
+      <div class="counter-photo-wrapper">
+        <label class="counter-photo-frame" for="counterPhotoInput" title="Nhấn để đổi ảnh">
+          <!-- Ảnh mặc định / placeholder -->
+          <img
+            id="counterPhoto"
+            class="counter-photo-img"
+            src=""
+            alt="Ảnh của chúng mình"
+            style="display:none;"
+          />
+          <!-- Placeholder khi chưa có ảnh -->
+          <div class="counter-photo-placeholder" id="counterPhotoPlaceholder">
+            <span class="counter-photo-icon">♡</span>
+            <span class="counter-photo-hint">Thêm ảnh</span>
+          </div>
+          <!-- Overlay khi hover -->
+          <div class="counter-photo-overlay">
+            <span>📷 Đổi ảnh</span>
+          </div>
+          <input
+            type="file"
+            id="counterPhotoInput"
+            accept="image/*"
+            onchange="changeCounterPhoto(this)"
+            hidden
+          />
+        </label>
+        <!-- Vòng trang trí xoay -->
+        <div class="counter-photo-ring"></div>
+        <div class="counter-photo-ring counter-photo-ring--2"></div>
+      </div>
+
+      <!-- Các thẻ đếm thời gian -->
+      <div class="counter-grid">
+        <div class="counter-card" id="counter-days">
+          <div class="counter-value" id="days">000</div>
+          <div class="counter-label">Ngày</div>
+          <div class="counter-glow"></div>
+        </div>
+        <div class="counter-separator">:</div>
+        <div class="counter-card" id="counter-hours">
+          <div class="counter-value" id="hours">00</div>
+          <div class="counter-label">Giờ</div>
+          <div class="counter-glow"></div>
+        </div>
+        <div class="counter-separator">:</div>
+        <div class="counter-card" id="counter-minutes">
+          <div class="counter-value" id="minutes">00</div>
+          <div class="counter-label">Phút</div>
+          <div class="counter-glow"></div>
+        </div>
+        <div class="counter-separator">:</div>
+        <div class="counter-card" id="counter-seconds">
+          <div class="counter-value" id="seconds">00</div>
+          <div class="counter-label">Giây</div>
+          <div class="counter-glow"></div>
+        </div>
+      </div>
+
+      <!-- Câu trích dẫn lãng mạn bên dưới -->
+      <p class="counter-quote">
+        Một nhà hiền triết tên <strong>HuyLee</strong> đã từng nói<br />
+        "Luôn yêu em như những ngày đầu"
+      </p>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       KHU VỰC DÒNG THỜI GIAN KỶ NIỆM (TIMELINE SECTION)
+       ==================================================== -->
+  <section class="timeline-section" id="timeline">
+    <div class="section-inner">
+      <!-- Tiêu đề section -->
+      <div class="section-header">
+        <span class="section-eyebrow">✦ Huy & Vy phiêu lưu kí</span>
+        <h2 class="section-title">Hành Trình yêu nhau</h2>
+        <p class="section-subtitle">
+          Hành trình đi thỉnh kinh của Bill và Wuy
+        </p>
+      </div>
+
+      <!-- Nút thêm kỷ niệm mới -->
+      <div class="timeline-actions">
+        <button class="btn-add-memory" id="openAddMemoryBtn">
+          <span>+ Thêm Kỷ Niệm</span>
+        </button>
+      </div>
+
+      <!-- Container hiển thị dòng thời gian -->
+      <div class="timeline-container" id="timelineContainer">
+        <!-- Các kỷ niệm sẽ được render động bởi JavaScript -->
+        <div class="timeline-empty" id="timelineEmpty">
+          <div class="empty-icon">📷</div>
+          <p>Chưa có kỷ niệm nào được lưu.<br />Hãy thêm kỷ niệm đầu tiên của chúng mình! ✦</p>
+          <button class="btn-add-memory-empty" onclick="openAddMemoryModal()">
+            + Thêm Kỷ Niệm Đầu Tiên
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       KHU VỰC QUẢN LÝ ẢNH VÀ VIDEO (ADMIN PANEL)
+       ==================================================== -->
+
+  <!-- Overlay nền mờ -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeAllModals()"></div>
+
+  <!-- Modal: Bảng quản lý tổng thể -->
+  <div class="admin-panel" id="adminPanel">
+    <div class="admin-panel-header">
+      <h3>✦ Quản Lý Kỷ Niệm</h3>
+      <button class="modal-close" onclick="closeAdminPanel()">✕</button>
+    </div>
+
+    <div class="admin-panel-body">
+      <!-- Phần thay video nền -->
+      <div class="admin-section">
+        <h4 class="admin-section-title">🎬 Video Nền Chính</h4>
+        <p class="admin-section-desc">Thay video nền hiển thị toàn màn hình</p>
+        <label class="upload-btn" for="bgVideoInput">
+          <span>📁 Chọn Video Mới</span>
+          <input type="file" id="bgVideoInput" accept="video/*" onchange="changeBgVideo(this)" hidden />
+        </label>
+        <p class="admin-note">Hỗ trợ: MP4, WebM · Khuyến nghị: 1920×1080</p>
+      </div>
+
+      <!-- Danh sách kỷ niệm hiện có -->
+      <div class="admin-section">
+        <h4 class="admin-section-title">📸 Danh Sách Kỷ Niệm</h4>
+        <div class="admin-memory-list" id="adminMemoryList">
+          <!-- Render động bởi JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-panel-footer">
+      <button class="btn-primary" onclick="openAddMemoryModal()">+ Thêm Kỷ Niệm Mới</button>
+    </div>
+  </div>
+
+  <!-- Modal: Thêm / Chỉnh sửa kỷ niệm -->
+  <div class="memory-modal" id="memoryModal">
+    <div class="memory-modal-header">
+      <h3 id="memoryModalTitle">✦ Thêm Kỷ Niệm Mới</h3>
+      <button class="modal-close" onclick="closeMemoryModal()">✕</button>
+    </div>
+
+    <div class="memory-modal-body">
+      <!-- Input ẩn lưu ID đang chỉnh sửa -->
+      <input type="hidden" id="editMemoryId" value="" />
+
+      <!-- Chọn loại media -->
+      <div class="form-group">
+        <label class="form-label">Ảnh hay video</label>
+        <div class="media-type-toggle">
+          <button class="media-type-btn active" id="typeImageBtn" onclick="switchMediaType('image')">Ảnh</button>
+          <button class="media-type-btn" id="typeVideoBtn" onclick="switchMediaType('video')">Video</button>
+        </div>
+      </div>
+
+      <!-- Upload ảnh -->
+      <div class="form-group" id="imageUploadGroup">
+        <label class="form-label">Chọn Ảnh</label>
+        <label class="upload-area" for="memoryImageInput" id="imageUploadArea">
+          <div class="upload-placeholder" id="imagePlaceholder">
+            <span class="upload-icon">📷</span>
+            <span>Nhấn để chọn ảnh</span>
+            <span class="upload-hint">JPG, PNG, WEBP · Tối đa 10MB</span>
+          </div>
+          <img id="imagePreview" class="media-preview" style="display:none;" alt="Preview" />
+          <input type="file" id="memoryImageInput" accept="image/*" onchange="previewImage(this)" hidden />
+        </label>
+      </div>
+
+      <!-- Upload video -->
+      <div class="form-group" id="videoUploadGroup" style="display:none;">
+        <label class="form-label">Chọn Video</label>
+        <label class="upload-area" for="memoryVideoInput" id="videoUploadArea">
+          <div class="upload-placeholder" id="videoPlaceholder">
+            <span class="upload-icon">🎬</span>
+            <span>Nhấn để chọn video</span>
+            <span class="upload-hint">MP4, WebM · Tối đa 50MB</span>
+          </div>
+          <video id="videoPreview" class="media-preview" controls style="display:none;"></video>
+          <input type="file" id="memoryVideoInput" accept="video/*" onchange="previewVideo(this)" hidden />
+        </label>
+      </div>
+
+      <!-- Tiêu đề kỷ niệm -->
+      <div class="form-group">
+        <label class="form-label" for="memoryTitle">Tiêu Đề</label>
+        <input type="text" id="memoryTitle" class="form-input" placeholder="Ví dụ: Huylee yêu ai..." />
+      </div>
+
+      <!-- Ngày tháng -->
+      <div class="form-group">
+        <label class="form-label" for="memoryDate">Ngày</label>
+        <input type="date" id="memoryDate" class="form-input" />
+      </div>
+
+      <!-- Mô tả -->
+      <div class="form-group">
+        <label class="form-label" for="memoryDescription">Mô Tả</label>
+        <textarea id="memoryDescription" class="form-textarea" placeholder="Kể về kỷ niệm này..." rows="4"></textarea>
+      </div>
+    </div>
+
+    <div class="memory-modal-footer">
+      <button class="btn-secondary" onclick="closeMemoryModal()">Hủy</button>
+      <button class="btn-primary" onclick="saveMemory()">💾 Lưu</button>
+    </div>
+  </div>
+
+  <!-- Modal: Xem chi tiết kỷ niệm (lightbox) -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close">✕</button>
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <div class="lightbox-media" id="lightboxMedia"></div>
+      <div class="lightbox-info">
+        <span class="lightbox-date" id="lightboxDate"></span>
+        <h3 class="lightbox-title" id="lightboxTitle"></h3>
+        <p class="lightbox-desc" id="lightboxDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
