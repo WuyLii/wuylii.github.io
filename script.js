@@ -188,10 +188,8 @@ const StorageAdapter = {
 
   /** Chuyển row Supabase → object memory dùng trong app */
   _rowToMemory(row) {
-    // Bảng chỉ có: id, title, media_url, media_type, created_at
-    // date/description không có trong bảng → dùng giá trị mặc định
-    const dateStr = row.date
-      || (row.created_at ? row.created_at.substring(0, 10) : '');
+    // Bảng có đủ: id, title, media_url, media_type, created_at, date, description
+    const dateStr = row.date || (row.created_at ? row.created_at.substring(0, 10) : '');
     return {
       id: String(row.id),
       supabaseId: row.id,
@@ -726,9 +724,14 @@ async function saveMemory() {
     return;
   }
 
-  // Lấy date và description cho hiển thị UI (không gửi lên Supabase — bảng không có cột này)
   const date = document.getElementById('memoryDate').value;
   const description = document.getElementById('memoryDescription').value.trim();
+
+  if (!date) {
+    showToast('⚠️ Vui lòng chọn ngày!', 'error');
+    document.getElementById('memoryDate').focus();
+    return;
+  }
 
   // Vô hiệu hóa nút Lưu để tránh double-submit
   const saveBtn = document.querySelector('.memory-modal-footer .btn-primary');
@@ -757,18 +760,17 @@ async function saveMemory() {
 
     if (AppState.editingId && AppState.editingSupabaseId) {
       // ── CẬP NHẬT kỷ niệm hiện có ──
-      // Chỉ cập nhật các cột thực sự có trong bảng: title, media_url, media_type
-      const updates = { title, media_type: mediaType };
+      const updates = { title, date, description, media_type: mediaType };
       if (AppState.currentMediaFile) updates.media_url = mediaUrl;
 
       await SupabaseAdapter.update(AppState.editingSupabaseId, updates);
       showToast('✓ Đã cập nhật kỷ niệm!', 'success');
     } else {
       // ── THÊM KỶ NIỆM MỚI ──
-      // Chỉ gửi các cột tồn tại trong bảng: title, media_url, media_type
-      // (id và created_at được Supabase tự tạo)
       await saveMemoryToSupabase({
         title,
+        date,
+        description,
         media_url: mediaUrl || '',
         media_type: mediaType,
       });
