@@ -1079,6 +1079,8 @@ Object.assign(SupabaseAdapter, {
 // APP STATE — PHOTOBOOTH & JOURNEY
 // ====================================================
 AppState.photobooth   = [];
+AppState.pbCatItems   = [];
+AppState.pbCatIndex   = 0;
 AppState.journey      = [];
 AppState.pbPending    = [];
 AppState.pbExisting   = [];
@@ -1145,6 +1147,7 @@ function createPbCard(ev, index) {
     mediaHtml = `<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:0.25;">🎯</div>`;
   }
 
+  card.onclick = () => openPbCatalog(ev.id);
   card.innerHTML = `
     <div class="pb-card-index">${index + 1}</div>
     <div class="pb-card-media">${mediaHtml}
@@ -1397,6 +1400,7 @@ function createJourneyStop(ev, index) {
     </div>
     <div class="jn-stop-pin"><div class="jn-stop-pin-inner">📍</div></div>
     <div class="jn-stop-spacer"></div>
+    <div class="jn-stop-connector"></div>
   `;
   return stop;
 }
@@ -1504,6 +1508,110 @@ function closeJnCatalog() {
   document.body.style.overflow = '';
   document.getElementById('jnCatalogMedia').querySelector('video')?.pause();
 }
+
+// ====================================================
+// PHOTOBOOTH — CATALOG LIGHTBOX
+// ====================================================
+async function openPbCatalog(id) {
+  const ev = AppState.photobooth.find(e => e.id === id);
+  if (!ev) return;
+
+  AppState.pbCatItems = [];
+  if (ev.mediaData) AppState.pbCatItems.push({ url: ev.mediaData, type: ev.mediaType });
+  try {
+    const extras = await SupabaseAdapter.getPbMedia(ev.supabaseId);
+    extras.forEach(e => AppState.pbCatItems.push({ url: e.media_url, type: e.media_type }));
+  } catch(e) {}
+  AppState.pbCatIndex = 0;
+
+  document.getElementById('pbCatalogTitle').textContent = ev.title;
+  document.getElementById('pbCatalogDate').textContent  = formatDate(ev.date);
+  document.getElementById('pbCatalogDesc').textContent  = ev.description || '';
+
+  ensurePbCatalogNav();
+  renderPbCatalogSlide();
+  updatePbCatalogNav();
+
+  document.getElementById('pbCatalog').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function ensurePbCatalogNav() {
+  if (document.getElementById('pbCatPrev')) return;
+  const media = document.getElementById('pbCatalogMedia');
+  if (!media) return;
+
+  const prev = document.createElement('button');
+  prev.id = 'pbCatPrev'; prev.className = 'jn-cat-prev'; prev.innerHTML = '&#10094;';
+  prev.onclick = e => { e.stopPropagation(); pbCatalogSlideBy(-1); };
+
+  const next = document.createElement('button');
+  next.id = 'pbCatNext'; next.className = 'jn-cat-next'; next.innerHTML = '&#10095;';
+  next.onclick = e => { e.stopPropagation(); pbCatalogSlideBy(1); };
+
+  const counter = document.createElement('div');
+  counter.id = 'pbCatCounter'; counter.className = 'jn-cat-counter';
+
+  media.appendChild(prev);
+  media.appendChild(next);
+  media.appendChild(counter);
+}
+
+function renderPbCatalogSlide() {
+  const item = AppState.pbCatItems[AppState.pbCatIndex];
+  const container = document.getElementById('pbCatalogMedia');
+  if (!container) return;
+
+  container.querySelector('video')?.pause();
+  const old = container.querySelector('img, video');
+  if (old) old.remove();
+
+  if (!item) {
+    const ph = document.createElement('div');
+    ph.style.cssText = 'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.2;';
+    ph.textContent = '🎯';
+    container.insertBefore(ph, container.firstChild);
+    return;
+  }
+
+  let el;
+  if (item.type === 'video') {
+    el = document.createElement('video');
+    el.src = item.url; el.controls = true; el.autoplay = true;
+    el.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+  } else {
+    el = document.createElement('img');
+    el.src = item.url;
+    el.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+  }
+  container.insertBefore(el, container.firstChild);
+}
+
+function pbCatalogSlideBy(dir) {
+  const total = AppState.pbCatItems.length;
+  if (total <= 1) return;
+  AppState.pbCatIndex = (AppState.pbCatIndex + dir + total) % total;
+  renderPbCatalogSlide();
+  updatePbCatalogNav();
+}
+
+function updatePbCatalogNav() {
+  const total = AppState.pbCatItems.length;
+  const show  = total > 1;
+  const prev = document.getElementById('pbCatPrev');
+  const next = document.getElementById('pbCatNext');
+  const counter = document.getElementById('pbCatCounter');
+  if (prev) prev.style.display = show ? 'flex' : 'none';
+  if (next) next.style.display = show ? 'flex' : 'none';
+  if (counter) counter.textContent = show ? `${AppState.pbCatIndex + 1} / ${total}` : '';
+}
+
+function closePbCatalog() {
+  document.getElementById('pbCatalog').classList.remove('active');
+  document.body.style.overflow = '';
+  document.getElementById('pbCatalogMedia').querySelector('video')?.pause();
+}
+
 
 // ====================================================
 // JOURNEY — MODAL & CRUD
