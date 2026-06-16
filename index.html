@@ -67,7 +67,17 @@
       </li>
       <li>
         <a href="#timeline" class="nav-link" onclick="smoothScroll('#timeline')">
-          Dòng Thời Gian
+          Kỷ Niệm
+        </a>
+      </li>
+      <li>
+        <a href="#photobooth" class="nav-link" onclick="smoothScroll('#photobooth')">
+          Phô Tô Bút
+        </a>
+      </li>
+      <li>
+        <a href="#journey" class="nav-link" onclick="smoothScroll('#journey')">
+          Xuyên Việt
         </a>
       </li>
     </ul>
@@ -230,6 +240,170 @@
       </div>
     </div>
   </section>
+
+  <!-- ====================================================
+       CHUYÊN MỤC: CHINH PHỤC PHÔ TÔ BÚT
+       ==================================================== -->
+  <section class="photobooth-section" id="photobooth">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-eyebrow pb-eyebrow">🎯 Hành trình chinh phục</span>
+        <h2 class="section-title pb-title">Chinh Phục Phô Tô Bút</h2>
+        <p class="section-subtitle pb-subtitle">
+          Từng cột mốc nhỏ — từng chiến thắng lớn của Huy &amp; Vy
+        </p>
+      </div>
+      <div class="pb-actions">
+        <button class="pb-add-btn" id="openAddPhotoboothBtn">
+          <span>+ Thêm Cột Mốc</span>
+        </button>
+      </div>
+      <div class="pb-grid" id="pbGrid">
+        <div class="pb-empty" id="pbEmpty">
+          <div class="empty-icon">🎯</div>
+          <p>Chưa có cột mốc nào.<br />Hãy ghi lại thành tích đầu tiên! ✦</p>
+          <button class="pb-add-btn-empty" onclick="openAddPhotoboothModal()">
+            + Thêm Cột Mốc Đầu Tiên
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       CHUYÊN MỤC: HÀNH TRÌNH XUYÊN VIỆT
+       ==================================================== -->
+  <section class="journey-section" id="journey">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-eyebrow jn-eyebrow">🗺️ Bản đồ hành trình</span>
+        <h2 class="section-title jn-title">Hành Trình Xuyên Việt</h2>
+        <p class="section-subtitle jn-subtitle">
+          Những địa điểm Huy &amp; Vy đã cùng nhau đặt chân đến
+        </p>
+      </div>
+      <div class="jn-actions">
+        <button class="jn-add-btn" id="openAddJourneyBtn">
+          <span>+ Thêm Địa Điểm</span>
+        </button>
+      </div>
+      <div class="jn-path-container" id="jnPathContainer">
+        <div class="jn-empty" id="jnEmpty">
+          <div class="empty-icon">🗺️</div>
+          <p>Hành trình chưa bắt đầu.<br />Hãy thêm điểm dừng chân đầu tiên! ✦</p>
+          <button class="jn-add-btn-empty" onclick="openAddJourneyModal()">
+            + Thêm Điểm Dừng Chân
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       MODAL: THÊM / SỬA CỘT MỐC PHÔ TÔ BÚT
+       ==================================================== -->
+  <div class="pb-modal" id="pbModal">
+    <div class="pb-modal-header">
+      <h3 id="pbModalTitle">🎯 Thêm Cột Mốc Mới</h3>
+      <button class="modal-close" onclick="closePbModal()">✕</button>
+    </div>
+    <div class="pb-modal-body">
+      <input type="hidden" id="pbEditId" value="" />
+      <div class="form-group">
+        <label class="form-label">Ảnh &amp; Video</label>
+        <label class="upload-area multi-upload-area" for="pbMediaInput" id="pbMediaUploadArea">
+          <div class="upload-placeholder" id="pbMediaPlaceholder">
+            <span class="upload-icon">🎯</span>
+            <span>Nhấn để chọn ảnh hoặc video</span>
+            <span class="upload-hint">JPG, PNG, MP4...</span>
+          </div>
+          <input type="file" id="pbMediaInput" accept="image/*,video/*"
+                 multiple onchange="handlePbMediaSelect(this)" hidden />
+        </label>
+        <div id="pbMediaPreviewGrid" class="media-preview-grid" style="display:none;"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="pbTitle">Tên Cột Mốc</label>
+        <input type="text" id="pbTitle" class="form-input" placeholder="Ví dụ: Lần đầu chụp cùng nhau..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="pbDate">Ngày</label>
+        <input type="text" id="pbDate" class="form-input" placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="pbDescription">Mô Tả</label>
+        <textarea id="pbDescription" class="form-textarea" placeholder="Kể về cột mốc này..." rows="3"></textarea>
+      </div>
+    </div>
+    <div class="pb-modal-footer">
+      <button class="btn-secondary" onclick="closePbModal()">Hủy</button>
+      <button class="btn-pb-primary" onclick="savePbMemory()">💾 Lưu</button>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       MODAL: THÊM / SỬA ĐỊA ĐIỂM XUYÊN VIỆT
+       ==================================================== -->
+  <div class="jn-modal" id="jnModal">
+    <div class="jn-modal-header">
+      <h3 id="jnModalTitle">🗺️ Thêm Địa Điểm Mới</h3>
+      <button class="modal-close" onclick="closeJnModal()">✕</button>
+    </div>
+    <div class="jn-modal-body">
+      <input type="hidden" id="jnEditId" value="" />
+      <div class="form-group">
+        <label class="form-label">Ảnh &amp; Video</label>
+        <label class="upload-area multi-upload-area" for="jnMediaInput" id="jnMediaUploadArea">
+          <div class="upload-placeholder" id="jnMediaPlaceholder">
+            <span class="upload-icon">📍</span>
+            <span>Nhấn để chọn ảnh hoặc video</span>
+            <span class="upload-hint">JPG, PNG, MP4...</span>
+          </div>
+          <input type="file" id="jnMediaInput" accept="image/*,video/*"
+                 multiple onchange="handleJnMediaSelect(this)" hidden />
+        </label>
+        <div id="jnMediaPreviewGrid" class="media-preview-grid" style="display:none;"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="jnTitle">Tên Địa Điểm</label>
+        <input type="text" id="jnTitle" class="form-input" placeholder="Ví dụ: Hội An, Đà Nẵng..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="jnLocation">Vị Trí / Địa Chỉ</label>
+        <input type="text" id="jnLocation" class="form-input" placeholder="Ví dụ: Phố cổ Hội An, Quảng Nam" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="jnDate">Ngày</label>
+        <input type="text" id="jnDate" class="form-input" placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="jnDescription">Mô Tả Hành Trình</label>
+        <textarea id="jnDescription" class="form-textarea" placeholder="Kể về chuyến đi này..." rows="3"></textarea>
+      </div>
+    </div>
+    <div class="jn-modal-footer">
+      <button class="btn-secondary" onclick="closeJnModal()">Hủy</button>
+      <button class="btn-jn-primary" onclick="saveJnMemory()">💾 Lưu</button>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       JOURNEY CATALOG (lightbox chi tiết xuyên việt)
+       ==================================================== -->
+  <div class="jn-catalog" id="jnCatalog" onclick="closeJnCatalog()">
+    <div class="jn-catalog-content" onclick="event.stopPropagation()">
+      <button class="jn-catalog-close" onclick="closeJnCatalog()">✕</button>
+      <div class="jn-catalog-media" id="jnCatalogMedia"></div>
+      <div class="jn-catalog-info">
+        <div class="jn-catalog-meta">
+          <span class="jn-catalog-date" id="jnCatalogDate"></span>
+          <span class="jn-catalog-location" id="jnCatalogLocation"></span>
+        </div>
+        <h2 class="jn-catalog-title" id="jnCatalogTitle"></h2>
+        <p class="jn-catalog-desc" id="jnCatalogDesc"></p>
+      </div>
+    </div>
+  </div>
 
   <!-- ====================================================
        KHU VỰC QUẢN LÝ ẢNH VÀ VIDEO (ADMIN PANEL)
