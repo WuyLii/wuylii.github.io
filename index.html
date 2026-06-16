@@ -282,41 +282,20 @@
       <!-- Input ẩn lưu ID đang chỉnh sửa -->
       <input type="hidden" id="editMemoryId" value="" />
 
-      <!-- Chọn loại media -->
+      <!-- Upload nhiều ảnh/video -->
       <div class="form-group">
-        <label class="form-label">Ảnh hay video</label>
-        <div class="media-type-toggle">
-          <button class="media-type-btn active" id="typeImageBtn" onclick="switchMediaType('image')">Ảnh</button>
-          <button class="media-type-btn" id="typeVideoBtn" onclick="switchMediaType('video')">Video</button>
-        </div>
-      </div>
-
-      <!-- Upload ảnh -->
-      <div class="form-group" id="imageUploadGroup">
-        <label class="form-label">Chọn Ảnh</label>
-        <label class="upload-area" for="memoryImageInput" id="imageUploadArea">
-          <div class="upload-placeholder" id="imagePlaceholder">
+        <label class="form-label">Ảnh &amp; Video</label>
+        <label class="upload-area multi-upload-area" for="memoryMediaInput" id="mediaUploadArea">
+          <div class="upload-placeholder" id="mediaPlaceholder">
             <span class="upload-icon">📷</span>
-            <span>Nhấn để chọn ảnh</span>
-            <span class="upload-hint">JPG, PNG, WEBP · Tối đa 10MB</span>
+            <span>Nhấn để chọn ảnh hoặc video</span>
+            <span class="upload-hint">Chọn nhiều cùng lúc · JPG, PNG, MP4...</span>
           </div>
-          <img id="imagePreview" class="media-preview" style="display:none;" alt="Preview" />
-          <input type="file" id="memoryImageInput" accept="image/*" onchange="previewImage(this)" hidden />
+          <input type="file" id="memoryMediaInput" accept="image/*,video/*"
+                 multiple onchange="handleMediaSelect(this)" hidden />
         </label>
-      </div>
-
-      <!-- Upload video -->
-      <div class="form-group" id="videoUploadGroup" style="display:none;">
-        <label class="form-label">Chọn Video</label>
-        <label class="upload-area" for="memoryVideoInput" id="videoUploadArea">
-          <div class="upload-placeholder" id="videoPlaceholder">
-            <span class="upload-icon">🎬</span>
-            <span>Nhấn để chọn video</span>
-            <span class="upload-hint">MP4, WebM · Tối đa 50MB</span>
-          </div>
-          <video id="videoPreview" class="media-preview" controls style="display:none;"></video>
-          <input type="file" id="memoryVideoInput" accept="video/*" onchange="previewVideo(this)" hidden />
-        </label>
+        <!-- Grid preview ảnh đã chọn -->
+        <div id="mediaPreviewGrid" class="media-preview-grid" style="display:none;"></div>
       </div>
 
       <!-- Tiêu đề kỷ niệm -->
