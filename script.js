@@ -3479,3 +3479,159 @@ function closePbCatalog() {
   document.getElementById('pbCatalogMedia').querySelector('video')?.pause();
 
 }
+/* ====================================================
+   CÁNH CỔNG KÝ ỨC - GATE SCREEN LOGIC
+   ==================================================== */
+
+(function () {
+  // ---- Mật mã (thay đổi tại đây) ----
+  const GATE_PASSWORD = "huyvylov3";
+  const STORAGE_KEY   = "memoryGateUnlocked";
+
+  // ---- Khởi động ----
+  function initGate() {
+    const alreadyUnlocked = sessionStorage.getItem(STORAGE_KEY) === "true";
+
+    if (alreadyUnlocked) {
+      // Đã mở khóa trong session này -> ẩn gate, hiện nội dung
+      hideGateInstant();
+    } else {
+      // Hiển thị gate, ẩn nội dung chính
+      document.body.classList.add("gate-active");
+      spawnParticles();
+    }
+  }
+
+  // ---- Ẩn gate ngay lập tức (session đã unlock) ----
+  function hideGateInstant() {
+    const gate = document.getElementById("memoryGate");
+    if (gate) gate.classList.add("gate-hidden");
+    document.body.classList.remove("gate-active");
+    document.body.classList.add("gate-unlocked");
+  }
+
+  // ---- Tạo hạt sáng lấp lánh ----
+  function spawnParticles() {
+    const container = document.getElementById("gateParticles");
+    if (!container) return;
+    const count = 35;
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement("div");
+      p.className = "gate-particle";
+      const size = Math.random() * 4 + 2;
+      const left = Math.random() * 100;
+      const delay = Math.random() * 12;
+      const duration = 8 + Math.random() * 10;
+      p.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${left}%;
+        animation-delay:${delay}s;
+        animation-duration:${duration}s;
+      `;
+      container.appendChild(p);
+    }
+  }
+
+  // ---- Hiện/ẩn mật mã ----
+  window.toggleGatePassword = function () {
+    const inp  = document.getElementById("gatePasswordInput");
+    const icon = document.getElementById("eyeIcon");
+    if (!inp) return;
+    if (inp.type === "password") {
+      inp.type = "text";
+      inp.style.webkitTextSecurity = "none";
+      icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>';
+    } else {
+      inp.type = "password";
+      inp.style.webkitTextSecurity = "disc";
+      icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+    }
+  };
+
+  // ---- Hiển thị lỗi ----
+  function showGateError(msg) {
+    const el = document.getElementById("gateError");
+    if (!el) return;
+    el.textContent = msg;
+    el.style.animation = "none";
+    void el.offsetWidth;
+    el.style.animation = "errorShake 0.4s ease";
+    setTimeout(() => { el.textContent = ""; }, 4000);
+  }
+
+  // ---- Mở khóa ----
+  window.unlockGate = function () {
+    const inp = document.getElementById("gatePasswordInput");
+    if (!inp) return;
+    const val = inp.value.trim();
+
+    if (!val) {
+      showGateError("Bạn chưa nhập chìa khóa ký ức...");
+      inp.focus();
+      return;
+    }
+
+    if (val !== GATE_PASSWORD) {
+      inp.value = "";
+      inp.focus();
+      showGateError("Có lẽ bạn chưa mang theo đúng chiếc chìa khóa của ký ức 🗝️");
+      return;
+    }
+
+    // Đúng mật mã -> mở cửa
+    performOpenAnimation();
+  };
+
+  // ---- Hiệu ứng mở cửa ----
+  function performOpenAnimation() {
+    const gate    = document.getElementById("memoryGate");
+    const overlay = document.getElementById("gateOpenOverlay");
+    const btn     = document.getElementById("gateBtn");
+
+    // Khóa nút
+    if (btn) { btn.disabled = true; btn.querySelector(".gate-btn-text").textContent = "Đang mở..."; }
+
+    // Phase 1: cánh cửa mở
+    if (gate) gate.classList.add("opening");
+
+    // Phase 2: ánh sáng bùng ra (sau 0.5s)
+    setTimeout(() => {
+      if (overlay) overlay.classList.add("flash-in");
+    }, 500);
+
+    // Phase 3: ẩn gate, hiện nội dung (sau 1.6s)
+    setTimeout(() => {
+      sessionStorage.setItem(STORAGE_KEY, "true");
+      if (gate) gate.classList.add("gate-hidden");
+      document.body.classList.remove("gate-active");
+      document.body.classList.add("gate-unlocked");
+      // Xóa overlay sau khi xong
+      if (overlay) overlay.classList.remove("flash-in");
+    }, 1800);
+  }
+
+  // ---- Khóa lại ----
+  window.lockGate = function () {
+    sessionStorage.removeItem(STORAGE_KEY);
+    const gate = document.getElementById("memoryGate");
+    if (gate) {
+      gate.classList.remove("gate-hidden", "opening");
+      // Reset nội dung input
+      const inp = document.getElementById("gatePasswordInput");
+      if (inp) inp.value = "";
+      const err = document.getElementById("gateError");
+      if (err) err.textContent = "";
+      const btn = document.getElementById("gateBtn");
+      if (btn) { btn.disabled = false; btn.querySelector(".gate-btn-text").textContent = "Mở Cánh Cửa"; }
+    }
+    document.body.classList.add("gate-active");
+    document.body.classList.remove("gate-unlocked");
+  };
+
+  // ---- Khởi động khi DOM sẵn sàng ----
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initGate);
+  } else {
+    initGate();
+  }
+})();
