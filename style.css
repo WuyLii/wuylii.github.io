@@ -3556,8 +3556,9 @@ body {
     display: none !important;
   }
 
+  /* ── Bottom nav: ẩn mặc định, chỉ hiện sau khi nhấn "Xem Kỷ Niệm" ── */
   .mobile-bottom-nav {
-    display: flex;
+    display: none !important;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -3572,6 +3573,16 @@ body {
     z-index: 100;
     padding: 0 8px 8px 8px;
     padding-bottom: calc(8px + env(safe-area-inset-bottom));
+  }
+
+  /* Sau khi nhấn nút: hiện bottom nav */
+  body.mobile-nav-revealed .mobile-bottom-nav {
+    display: flex !important;
+  }
+
+  /* Sau khi nhấn nút: ẩn hero section */
+  body.mobile-nav-revealed .hero-section {
+    display: none !important;
   }
 
   .mbn-tab {
@@ -5881,3 +5892,46 @@ body.gate-unlocked .gate-lock-btn { display: block; }
 .gate-petal:nth-child(18) { left: 23%;  width: 15px; animation-duration: 6.8s;animation-delay: 0.9s;  --drift: -75px; --spin: -400deg; }
 .gate-petal:nth-child(19) { left: 65%;  width: 11px; animation-duration: 10s; animation-delay: 4.6s;  --drift: 40px;  --spin: 460deg; }
 .gate-petal:nth-child(20) { left: 88%;  width: 14px; animation-duration: 8.2s;animation-delay: 1.8s;  --drift: -85px; --spin: -330deg; }
+
+/* ====================================================
+   NÚT XEM KỶ NIỆM TRONG LOVE COUNTER
+   ==================================================== */
+
+/* Ẩn hoàn toàn trên PC */
+.counter-action-mobile {
+  display: none;
+}
+
+/* Chỉ hiện trên mobile, style đẹp đồng bộ giao diện */
+@media (max-width: 768px) {
+  .counter-action-mobile {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  .btn-view-memories {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 32px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--lotus-pink);
+    background: rgba(232, 160, 176, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(232, 160, 176, 0.35);
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(232, 160, 176, 0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+
+  .btn-view-memories:active {
+    transform: scale(0.97);
+    background: rgba(232, 160, 176, 0.22);
+  }
+}
