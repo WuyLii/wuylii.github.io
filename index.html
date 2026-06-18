@@ -298,8 +298,14 @@
         </p>
       </div>
 
-      <!-- Nút thêm kỷ niệm mới -->
+      <!-- Bộ lọc + Nút thêm kỷ niệm -->
       <div class="timeline-actions">
+        <div class="timeline-filter-wrap">
+          <label class="timeline-filter-label" for="yearFilter">📅 Lọc năm:</label>
+          <select id="yearFilter" class="timeline-year-select" onchange="filterTimelineByYear(this.value)">
+            <option value="all">Tất cả</option>
+          </select>
+        </div>
         <button class="btn-add-memory" id="openAddMemoryBtn">
           <span>+ Thêm Kỷ Niệm</span>
         </button>
@@ -451,8 +457,12 @@
         <input type="text" id="jnLocation" class="form-input" placeholder="Ví dụ: Phố cổ Hội An, Quảng Nam" />
       </div>
       <div class="form-group">
-        <label class="form-label" for="jnDate">Ngày</label>
-        <input type="text" id="jnDate" class="form-input" placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off" />
+        <label class="form-label" for="jnDateStart">Ngày Bắt Đầu</label>
+        <input type="text" id="jnDateStart" class="form-input" placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="jnDateEnd">Ngày Kết Thúc <span style="color:rgba(255,255,255,0.3);font-size:0.75em;">(để trống nếu 1 ngày)</span></label>
+        <input type="text" id="jnDateEnd" class="form-input" placeholder="dd/mm/yyyy (tùy chọn)" maxlength="10" inputmode="numeric" autocomplete="off" />
       </div>
       <div class="form-group">
         <label class="form-label" for="jnDescription">Mô Tả chuyến đi thỉnh kinh</label>
@@ -613,6 +623,34 @@
 
   <!-- Nút khóa lại website -->
   <button class="gate-lock-btn" id="gateLockBtn" onclick="lockGate()" title="Khóa lại">🔒 Khóa lại</button>
+
+  <!-- ====================================================
+       MOBILE BOTTOM NAVIGATION BAR
+       Chỉ hiển thị trên mobile (max-width: 768px)
+       ==================================================== -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav">
+    <button class="mbn-tab active" data-tab="love-counter" onclick="switchMobileTab('love-counter')">
+      <span class="mbn-icon">♡</span>
+      <span class="mbn-label">Đếm Ngày</span>
+    </button>
+    <button class="mbn-tab" data-tab="timeline" onclick="switchMobileTab('timeline')">
+      <span class="mbn-icon">📖</span>
+      <span class="mbn-label">Kỷ Niệm</span>
+    </button>
+    <button class="mbn-tab" data-tab="photobooth" onclick="switchMobileTab('photobooth')">
+      <span class="mbn-icon">📷</span>
+      <span class="mbn-label">Phô Tô Bút</span>
+    </button>
+    <button class="mbn-tab" data-tab="journey" onclick="switchMobileTab('journey')">
+      <span class="mbn-icon">🗺️</span>
+      <span class="mbn-label">Xuyên Việt</span>
+    </button>
+  </nav>
+
+  <!-- FAB button cho mobile - thêm nhanh -->
+  <button class="mobile-fab" id="mobileFab" onclick="mobileFabAction()" title="Thêm mới">
+    <span class="mobile-fab-icon">+</span>
+  </button>
 
   <script src="script.js"></script>
 </body>
