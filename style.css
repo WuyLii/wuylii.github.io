@@ -3777,11 +3777,11 @@ body {
     display: none !important;
   }
 
-  /* Show only active section */
-  .love-counter-section.active,
-  .timeline-section.active,
-  .photobooth-section.active,
-  .journey-section.active {
+  /* Show only active section, và CHỈ khi đã mở khoá (đã bấm "Xem Kỷ Niệm") */
+  body.mobile-nav-revealed .love-counter-section.active,
+  body.mobile-nav-revealed .timeline-section.active,
+  body.mobile-nav-revealed .photobooth-section.active,
+  body.mobile-nav-revealed .journey-section.active {
     display: block !important;
   }
 
