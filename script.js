@@ -2536,7 +2536,7 @@ function openAddPhotoboothModal() {
 
   AppState.pbEditingId = null;
 
-  document.getElementById('pbModalTitle').textContent = '🎯 Thêm Cột Mốc Mới';
+  document.getElementById('pbModalTitle').textContent = '🎯 Thêm Phô Tô Bút';
 
   document.getElementById('pbEditId').value = '';
 
@@ -3089,7 +3089,7 @@ function renderJnCatalogSlide() {
 
     const ph = document.createElement('div');
 
-    ph.style.cssText = 'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.2;';
+    ph.style.cssText = 'width:100%;min-height:300px;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.2;';
 
     ph.textContent = '📍';
 
@@ -3108,7 +3108,7 @@ function renderJnCatalogSlide() {
 
     el.src = item.url; el.controls = true; el.autoplay = true;
 
-    el.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000;display:block;';
+    el.style.cssText = 'width:100%;height:auto;max-height:85vh;object-fit:contain;background:#000;display:block;';
 
   } else {
 
@@ -3116,7 +3116,7 @@ function renderJnCatalogSlide() {
 
     el.src = item.url;
 
-    el.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000;display:block;';
+    el.style.cssText = 'width:100%;height:auto;max-height:85vh;object-fit:contain;background:#000;display:block;';
 
   }
 
@@ -3702,7 +3702,7 @@ function renderPbCatalogSlide() {
 
     const ph = document.createElement('div');
 
-    ph.style.cssText = 'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.2;';
+    ph.style.cssText = 'width:100%;min-height:300px;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.2;';
 
     ph.textContent = '🎯';
 
@@ -3721,7 +3721,7 @@ function renderPbCatalogSlide() {
 
     el.src = item.url; el.controls = true; el.autoplay = true;
 
-    el.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000;display:block;';
+    el.style.cssText = 'width:100%;height:auto;max-height:85vh;object-fit:contain;background:#000;display:block;';
 
   } else {
 
@@ -3729,7 +3729,7 @@ function renderPbCatalogSlide() {
 
     el.src = item.url;
 
-    el.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000;display:block;';
+    el.style.cssText = 'width:100%;height:auto;max-height:85vh;object-fit:contain;background:#000;display:block;';
 
   }
 
