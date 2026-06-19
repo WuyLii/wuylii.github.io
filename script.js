@@ -406,6 +406,10 @@ function switchMobileTab(tabName) {
 window.revealMobileNav = function(defaultTab) {
   const isMobile = window.innerWidth <= 768;
   if (isMobile) {
+    // Gỡ chốt an toàn inline-style trước khi cho CSS .active điều khiển hiển thị
+    document.querySelectorAll('.love-counter-section, .timeline-section, .photobooth-section, .journey-section').forEach(section => {
+      section.style.display = '';
+    });
     document.body.classList.add('mobile-nav-revealed');
     switchMobileTab(defaultTab || 'love-counter');
     window.scrollTo(0, 0);
@@ -428,6 +432,8 @@ window.addEventListener('DOMContentLoaded', () => {
     if (firstTab) firstTab.classList.add('active');
     document.querySelectorAll('.love-counter-section, .timeline-section, .photobooth-section, .journey-section').forEach(section => {
       section.classList.remove('active');
+      // Chốt an toàn bằng inline style, không phụ thuộc hoàn toàn vào CSS/cache
+      section.style.display = 'none';
     });
     const firstSection = document.getElementById(mobileTabOrder[0]);
     if (firstSection) firstSection.classList.add('active');
