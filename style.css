@@ -3761,8 +3761,7 @@ body {
   }
 
   body.mobile-nav-revealed .mobile-fab {
-    display: flex !important;
-    bottom: calc(96px + env(safe-area-inset-bottom));
+    display: none !important;
   }
 
   .mobile-fab:active {
