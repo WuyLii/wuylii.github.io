@@ -3575,6 +3575,38 @@ body {
     overflow-x: hidden;
   }
 
+  /* ──────────────────────────────── */
+  /* KHOÁ HERO SECTION TOÀN MÀN HÌNH (MOBILE) */
+  /* Trước khi bấm "Xem Kỷ Niệm": hero chiếm toàn bộ viewport,
+     không cho cuộn/vuốt lộ ra các section phía sau.          */
+  /* ──────────────────────────────── */
+
+  body:not(.mobile-nav-revealed) {
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+
+  body:not(.mobile-nav-revealed) .hero-section {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    touch-action: none;
+    z-index: 5;
+  }
+
+  /* Sau khi mở khoá: trả lại cuộn dọc bình thường cho các section */
+  body.mobile-nav-revealed {
+    height: auto;
+    overflow: visible;
+    position: static;
+    width: auto;
+  }
+
   .section-inner {
     padding: 20px 16px;
   }
@@ -3588,8 +3620,8 @@ body {
   }
 
   /* ── Bottom nav: an mac dinh, chi hien sau khi nhan nut "Xem Ky Niem" ──
-     Thanh nav noi (floating pill), kinh mo sang, hien dai - dien anh,
-     hai hoa voi nen toi nhung van noi bat ro rang tung tab. */
+     Thanh nav noi (floating pill), kinh mo toi theo tong mau cua trang,
+     hien dai - dien anh, hai hoa voi nen toi nhung van noi bat ro rang tung tab. */
   .mobile-bottom-nav {
     display: none !important;
     position: fixed;
@@ -3597,15 +3629,15 @@ body {
     right: 12px;
     bottom: 0;
     height: auto;
-    background: linear-gradient(180deg, rgba(255, 247, 250, 0.96) 0%, rgba(250, 235, 240, 0.94) 100%);
+    background: linear-gradient(135deg, rgba(214, 36, 110, 0.95) 0%, rgba(232, 74, 56, 0.95) 100%);
     backdrop-filter: blur(24px) saturate(160%);
     -webkit-backdrop-filter: blur(24px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 26px;
     box-shadow:
-      0 -2px 24px rgba(60, 20, 50, 0.28),
-      0 14px 40px rgba(60, 20, 50, 0.35),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      0 -2px 24px rgba(180, 20, 70, 0.35),
+      0 14px 40px rgba(180, 20, 70, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
     justify-content: space-around;
     align-items: center;
     gap: 4px;
@@ -3637,7 +3669,7 @@ body {
     min-height: 52px;
     background: transparent;
     border: none;
-    color: #9C8294;
+    color: rgba(255, 255, 255, 0.7);
     border-radius: 18px;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -3675,20 +3707,20 @@ body {
   }
 
   .mbn-tab.active {
-    color: var(--lotus-pink);
+    color: #fff;
   }
 
   .mbn-tab.active .mbn-icon {
-    background: linear-gradient(135deg, var(--lotus-pink) 0%, #E08CA0 100%);
-    color: #fff;
+    background: #fff;
+    color: #D6246E;
     box-shadow:
-      0 6px 14px rgba(232, 160, 176, 0.55),
-      0 2px 4px rgba(232, 160, 176, 0.3);
+      0 6px 14px rgba(0, 0, 0, 0.25),
+      0 2px 4px rgba(0, 0, 0, 0.2);
     transform: translateY(-1px);
   }
 
   .mbn-tab.active .mbn-label {
-    color: var(--lotus-pink);
+    color: #fff;
     font-weight: 700;
   }
 
@@ -3704,11 +3736,11 @@ body {
     height: 56px;
     border: none;
     border-radius: 18px;
-    background: linear-gradient(135deg, var(--lotus-pink) 0%, var(--lavender-deep) 100%);
+    background: linear-gradient(135deg, rgba(214, 36, 110, 1) 0%, rgba(232, 74, 56, 1) 100%);
     color: #fff;
     box-shadow:
-      0 10px 24px rgba(232, 160, 176, 0.5),
-      0 4px 10px rgba(60, 20, 50, 0.35);
+      0 10px 24px rgba(214, 36, 110, 0.5),
+      0 4px 10px rgba(0, 0, 0, 0.35);
     z-index: 101;
     align-items: center;
     justify-content: center;
