@@ -3589,14 +3589,25 @@ body {
   }
 
   body:not(.mobile-nav-revealed) .hero-section {
-    position: fixed;
+    position: fixed !important;
     inset: 0;
     width: 100%;
     height: 100%;
     min-height: 100%;
     overflow: hidden;
     touch-action: none;
-    z-index: 5;
+    z-index: 9999 !important;
+  }
+
+  /* Chốt an toàn: bất kể .active có bị gắn hay không, các section còn lại
+     TUYỆT ĐỐI không được hiện ra trong khi hero còn khoá (đè cả z-index gốc
+     của .love-counter-section là 10). */
+  body:not(.mobile-nav-revealed) .love-counter-section,
+  body:not(.mobile-nav-revealed) .timeline-section,
+  body:not(.mobile-nav-revealed) .photobooth-section,
+  body:not(.mobile-nav-revealed) .journey-section {
+    display: none !important;
+    z-index: -1 !important;
   }
 
   /* Sau khi mở khoá: trả lại cuộn dọc bình thường cho các section */
