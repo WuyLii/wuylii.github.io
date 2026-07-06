@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  actions: write   # Cần để tự re-enable workflow
+  actions: write
 
 jobs:
   ping:
@@ -14,7 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Tự động giữ workflow không bị GitHub disable
       - uses: gautamkrishnar/keepalive-workflow@v2
 
       - name: Ping Supabase
