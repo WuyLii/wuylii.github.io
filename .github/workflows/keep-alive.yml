@@ -15,7 +15,7 @@ jobs:
       - name: Ping Supabase
         run: |
           RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
-            "https://nafjrifwubpujvqrbkaj.supabase.co/rest/v1/memories?select=id&limit=1" \
+            "https://nafjrifwubpujvqrbkaj.supabase.co/rest/v1/site_config?select=key&limit=1" \
             -H "apikey: sb_publishable_A7Rkd6AM1gUgJKcYzzht0g_bS5GMwkl" \
             -H "Authorization: Bearer sb_publishable_A7Rkd6AM1gUgJKcYzzht0g_bS5GMwkl")
           echo "📡 Response: $RESPONSE"

@@ -1,0 +1,8 @@
+{
+  "name": "Trang Động Lực",
+  "description": "Trang web động lực học tập và nỗ lực cá nhân với thiết kế Riverine: đếm ngày nỗ lực và thư viện hình ảnh truyền cảm hứng.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,11 +1,11 @@
 {
-  "name": "Bill & Huy 💕",
-  "short_name": "Bill & Huy",
-  "description": "Kỷ niệm và hành trình của Huy & Bill",
+  "name": "Động Lực",
+  "short_name": "Động Lực",
+  "description": "Trang web cá nhân đếm ngày nỗ lực và hình ảnh động lực học tập",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a0a2e",
-  "theme_color": "#1a0a2e",
+  "background_color": "#03080B",
+  "theme_color": "#03080B",
   "orientation": "portrait",
   "icons": [
     {

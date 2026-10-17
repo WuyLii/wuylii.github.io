@@ -3,719 +3,496 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>Bảo Vy & Quốc Huy 💕</title>
+  <title>Động Lực</title>
+  <meta name="description" content="Trang web cá nhân đếm ngày nỗ lực và hình ảnh động lực học tập" />
+  <meta property="og:title" content="Động Lực" />
+  <meta property="og:description" content="Trang web cá nhân đếm ngày nỗ lực và hình ảnh động lực học tập" />
 
   <!-- Favicon hoa anh đào 🌸 -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>" />
 
-  <!-- ================================================
-       PWA - ADD TO HOME SCREEN (Safari / iOS)
-       Thay URL dưới đây bằng ảnh icon 512x512 từ Cloudinary của bạn
-       Ví dụ: https://res.cloudinary.com/dmq9orepw/image/upload/v.../app_icon.png
-       ================================================ -->
-
-  <!-- Icon hiển thị trên màn hình chính iOS -->
-  <link rel="apple-touch-icon" href="https://res.cloudinary.com/dmq9orepw/image/upload/c_fill,w_512,h_512/uj96bkvorbzzznmi4raw.png" />
-
-  <!-- Splash screens cho iPhone (iOS sẽ tự chọn đúng kích thước) -->
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Bill &amp; Huy 💕" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="theme-color" content="#1a0a2e" />
-
-  <!-- Splash screen cho các iPhone phổ biến -->
-  <!-- iPhone 14 Pro Max / 15 Pro Max (430×932) -->
-  <link rel="apple-touch-startup-image"
-        media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)"
-        href="https://res.cloudinary.com/dmq9orepw/image/upload/c_fill,w_1290,h_2796/uj96bkvorbzzznmi4raw.png" />
-  <!-- iPhone 14 Pro / 15 Pro (393×852) -->
-  <link rel="apple-touch-startup-image"
-        media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3)"
-        href="https://res.cloudinary.com/dmq9orepw/image/upload/c_fill,w_1179,h_2556/uj96bkvorbzzznmi4raw.png" />
-  <!-- iPhone 14 Plus (428×926) -->
-  <link rel="apple-touch-startup-image"
-        media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)"
-        href="https://res.cloudinary.com/dmq9orepw/image/upload/c_fill,w_1284,h_2778/uj96bkvorbzzznmi4raw.png" />
-  <!-- iPhone 14 / 13 / 12 (390×844) -->
-  <link rel="apple-touch-startup-image"
-        media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"
-        href="https://res.cloudinary.com/dmq9orepw/image/upload/c_fill,w_1170,h_2532/uj96bkvorbzzznmi4raw.png" />
-  <!-- iPhone SE 3rd gen (375×667) -->
-  <link rel="apple-touch-startup-image"
-        media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
-        href="https://res.cloudinary.com/dmq9orepw/image/upload/c_fill,w_750,h_1334/uj96bkvorbzzznmi4raw.png" />
-
-  <!-- Web App Manifest (Android Chrome) -->
+  <!-- Web App Manifest (Android Chrome & PWA) -->
   <link rel="manifest" href="manifest.json" />
 
-  <!-- ================================================
-       GOOGLE FONTS - Hỗ trợ đầy đủ tiếng Việt
-       - Playfair Display: serif đẹp, có subset=vietnamese
-       - Be Vietnam Pro: sans-serif chuẩn tiếng Việt
-       ================================================ -->
+  <!-- iOS PWA meta (tĩnh theo quy định mục 11) -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Động Lực" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#03080B" />
+  <link rel="apple-touch-icon" href="https://res.cloudinary.com/dmq9orepw/image/upload/c_fill,w_512,h_512/uj96bkvorbzzznmi4raw.png" />
+
+  <!-- Google Fonts với subset=vietnamese đầy đủ -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <style>
-    /* Import font trực tiếp - đảm bảo tiếng Việt đúng */
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Be+Vietnam+Pro:wght@300;400;500;600&subset=vietnamese&display=swap');
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500&family=Plus+Jakarta+Sans:wght@500;600;700&subset=vietnamese&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="gate-active">
 
   <!-- ====================================================
-       CÁNH CỔNG KÝ ỨC - GATE SCREEN
+       CỔNG MẬT KHẨU (PASSWORD GATE - RIVERINE DESIGN)
        ==================================================== -->
-  <div id="memoryGate" class="memory-gate">
-    <!-- Video nền (dùng chung với video chính) -->
+  <div id="memoryGate" class="gate-stage" role="dialog" aria-modal="true" aria-label="Cổng bảo vệ">
+    <div class="gate-backdrop-under no-custom-bg" id="gateBackdropUnder"></div>
+    <div class="gate-backdrop-blur no-custom-bg" id="gateBackdropBlur"></div>
+    <div class="shade-layer shade-h"></div>
+    <div class="shade-layer shade-v"></div>
 
-    <!--===================== NỀN KHOÁ LÀ VIDEO ==================================-->
-    <video class="gate-video-bg" autoplay loop muted playsinline>
-  <source src="https://res.cloudinary.com/dmq9orepw/video/upload/v1781889229/video_o0wwlf.mp4" type="video/mp4" />
-</video>
+    <div class="gate-card">
+      <div class="gate-badge">✦ Không gian cá nhân ✦</div>
+      <h1 class="gate-title">Chỉ dành cho mình.</h1>
+      <p class="gate-desc">Nhập mật mã để mở ra không gian nỗ lực riêng tư ♡</p>
 
-    <!-- =============================== NỀN KHOÁ LÀ ẢNH ================================-->
-    <!-- <img class="gate-video-bg" src="https://res.cloudinary.com/dmq9orepw/image/upload/v1781687151/uj96bkvorbzzznmi4raw.png" /> -->
-    
-    <!-- Overlay mờ lên video -->
-    <div class="gate-video-overlay"></div>
+      <div class="gate-form-wrap" id="gateFormWrap">
+        <div class="gate-input-row">
+          <input
+            type="password"
+            id="gatePasswordInput"
+            class="gate-input"
+            placeholder="Nhập mật mã..."
+            autocomplete="current-password"
+            aria-label="Mật mã mở cổng"
+          />
+          <button
+            type="button"
+            id="gateTogglePwBtn"
+            class="gate-icon-btn"
+            title="Hiện/ẩn mật mã"
+            aria-label="Hiện hoặc ẩn mật mã"
+          >
+            <svg id="eyeIconSvg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
 
-    <!-- Hạt sáng lấp lánh nền -->
-    <div class="gate-particles" id="gateParticles"></div>
-    <!-- Nội dung trung tâm -->
-    <div class="gate-content">
-      <!-- Biểu tượng cánh cửa -->
-      <div class="gate-door-icon">
-        <div class="gate-door-left"></div>
-        <div class="gate-door-right"></div>
-        <div class="gate-door-glow"></div>
-        <span class="gate-door-symbol">🌸</span>
+        <div class="gate-error-msg" id="gateErrorMsg" role="alert" aria-live="assertive"></div>
+
+        <div class="gate-actions">
+          <button type="button" id="gateUnlockBtn" class="gate-submit-btn">
+            <span class="gate-btn-text">Mở Cổng</span>
+            <span class="btn-disc">
+              <svg width="10" height="10" viewBox="0 0 6 7" fill="none">
+                <path d="M.6.6 4 4 .6 7.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+        </div>
       </div>
 
-      <!-- Nhãn nhỏ -->
-      <span class="gate-eyebrow">✦ Cảnh cửa thần kỳ ✦</span>
+      <div id="gateLoading" class="gate-loading" style="display: none;">
+        <div class="gate-spinner"></div>
+        <span>Đang kiểm tra kết nối...</span>
+      </div>
 
-      <!-- Tiêu đề -->
-      <h1 class="gate-title">Hành trình<br /><em>Bill & Huy</em></h1>
+      <p class="gate-hint">Mật mã được lưu trữ an toàn trong CSDL (mặc định: 00000000)</p>
+    </div>
+  </div>
 
-      <!-- Mô tả -->
-      <p class="gate-description">
-       Khi cánh cổng này đóng lại<br />
-        thì sẽ có một cái chìa khoá để mở ra<br />
-        hãy dùng nó để mở ra câu truyện của bên trong ♡
-      </p>
+  <!-- Flash overlay khi mở cổng -->
+  <div class="gate-flash-overlay" id="gateFlashOverlay"></div>
 
-      <!-- Ô nhập mật mã -->
-      <div class="gate-input-wrap">
-        <div class="gate-input-icon">🗝️</div>
-        <input
-          type="password"
-          id="gatePasswordInput"
-          class="gate-input"
-          placeholder="Hãy nhập mật khẩu giấu kín..."
-          autocomplete="off"
-          onkeydown="if(event.key==='Enter') unlockGate()"
-        />
-        <button class="gate-toggle-pw" onclick="toggleGatePassword()" title="Hiện/ẩn mật mã">
-          <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+  <!-- ====================================================
+       KHUNG 2 TRANG TRƯỢT NGANG (100dvh, OVERFLOW HIDDEN)
+       ==================================================== -->
+  <div class="viewport-stage" id="viewportStage">
+
+    <!-- LỚP NỀN ĐÔI PARALLAX & HIỆU ỨNG MỜ (MỤC 5) -->
+    <div class="bg-stage-wrap" id="bgStageWrap">
+      <!-- Lớp dưới: rõ nét -->
+      <div class="bg-layer bg-layer-clear no-custom-bg" id="bgLayerClear"></div>
+      <!-- Lớp trên: mờ + gradient mask -->
+      <div class="bg-layer bg-layer-blur no-custom-bg" id="bgLayerBlur"></div>
+      <!-- Ba lớp shade chuẩn đặc tả Riverine -->
+      <div class="shade-layer shade-h"></div>
+      <div class="shade-layer shade-v"></div>
+      <div class="shade-layer shade-radial"></div>
+    </div>
+
+    <!-- HEADER & THANH ĐIỀU HƯỚNG CỐ ĐỊNH -->
+    <header class="river-header" id="riverHeader">
+      <!-- Pill kính trên cùng bên trái (104x46) -->
+      <a href="#days" class="pill-glass-brand" id="brandLogoLink" aria-label="Về trang số ngày nỗ lực">
+        <span class="brand-disc" id="brandInitialDisc">V</span>
+        <svg class="brand-star-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" fill="#315352"/>
+        </svg>
+      </a>
+
+      <!-- Nav pill đen trung tâm (desktop) -->
+      <nav class="nav-pill-black" id="desktopNavPill" aria-label="Thanh điều hướng chính">
+        <a href="#days" class="nav-pill-link" id="navLinkDays" aria-current="page">Số ngày nỗ lực</a>
+        <a href="#photos" class="nav-pill-link" id="navLinkPhotos">
+          <span>Hình ảnh của </span><span class="person-name-inline">...</span>
+        </a>
+        <button type="button" class="pill-cream-admin" id="openAdminBtn" title="Bảng quản lý">
+          <span>Quản lý</span>
+          <span class="btn-disc-pine">
+            <svg width="6" height="7" viewBox="0 0 6 7" fill="none">
+              <path d="M.6.6 4 4 .6 7.4" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+      </nav>
+
+      <!-- Nhóm nút góc trên phải -->
+      <div class="header-right">
+        <!-- Nút xem rõ ảnh nền -->
+        <button
+          type="button"
+          class="circle-blur-btn"
+          id="toggleClearBgBtn"
+          aria-label="Xem rõ ảnh nền"
+          aria-pressed="false"
+          title="Xem rõ hoặc làm mờ ảnh nền"
+        >
+          <svg class="eye-toggle-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/>
             <circle cx="12" cy="12" r="3"/>
           </svg>
         </button>
-      </div>
 
-      <!-- Thông báo lỗi -->
-      <div class="gate-error" id="gateError"></div>
-
-      <!-- Nút mở cửa -->
-      <button class="gate-btn" id="gateBtn" onclick="unlockGate()">
-        <span class="gate-btn-text">Mở Cánh Cửa</span>
-        <span class="gate-btn-icon">→</span>
-      </button>
-
-      <!-- Gợi ý nhỏ -->
-      <p class="gate-hint">Đây là web cá nhân của Vy và Huy ♡</p>
-    </div>
-  </div>
-
-  <!-- Hiệu ứng mở cửa overlay -->
-  <div class="gate-open-overlay" id="gateOpenOverlay"></div>
-
-  <!-- ====================================================
-       KHU VỰC VIDEO NỀN CHÍNH
-       ==================================================== -->
-  <div class="video-background" id="videoBg">
-    <!-- Video nền cinematic - autoplay, loop, muted, playsinline -->
-    <video
-      id="heroVideo"
-      autoplay
-      loop
-      muted
-      playsinline
-      preload="auto"
-    >
-      <!-- Chưa có video nền: nếu đã lưu video qua bảng Quản Lý, JS sẽ tự gán src bên dưới. -->
-      <!-- Fallback nếu video không tải được -->
-      Your browser does not support video playback.
-    </video>
-
-    <!-- Overlay mờ rất nhẹ để text dễ đọc hơn (chỉ 12% opacity) -->
-    <div class="video-overlay"></div>
-  </div>
-
-  <!-- ====================================================
-       THANH ĐIỀU HƯỚNG (NAVIGATION BAR)
-       ==================================================== -->
-  <nav class="navbar" id="navbar">
-    <!-- Logo / Tên đôi bên trái -->
-    <div class="nav-logo">
-      <span class="logo-initials">Huy & Vy</span>
-      <span class="logo-heart">♡</span>
-    </div>
-
-    <!-- Menu điều hướng bên phải -->
-    <ul class="nav-menu">
-      <li>
-        <a href="#love-counter" class="nav-link" onclick="smoothScroll('#love-counter')">
-          Đếm Ngày Yêu
-        </a>
-      </li>
-      <li>
-        <a href="#timeline" class="nav-link" onclick="smoothScroll('#timeline')">
-          Kỷ Niệm
-        </a>
-      </li>
-      <li>
-        <a href="#photobooth" class="nav-link" onclick="smoothScroll('#photobooth')">
-          Phô Tô Bút
-        </a>
-      </li>
-      <li>
-        <a href="#journey" class="nav-link" onclick="smoothScroll('#journey')">
-          Xuyên Việt
-        </a>
-      </li>
-    </ul>
-
-    <!-- Nút mở bảng quản lý ảnh/video (Admin Panel) -->
-    <button class="nav-admin-btn" id="openAdminBtn" title="Quản lý kỷ niệm">
-      ✦ Quản Lý
-    </button>
-  </nav>
-
-  <!-- ====================================================
-       KHU VỰC HERO SECTION
-       ==================================================== -->
-  <section class="hero-section" id="hero">
-    <div class="hero-content">
-      <!-- Nhãn nhỏ phía trên tiêu đề -->
-      <span class="hero-eyebrow fade-rise delay-1">✦ Câu chuyện cổ tích Huy & Bill ✦</span>
-
-      <!-- Tiêu đề lớn với từ nổi bật màu lavender -->
-      <h1 class="hero-title fade-rise delay-2">
-        Lưu trữ từng ngày<br />
-        Thương yêu từng giờ<br />
-        <em class="highlight">ký ức đẹp từng giây</em>
-      </h1>
-
-      <!-- Mô tả ngắn lãng mạn -->
-      <p class="hero-description fade-rise delay-3">
-        Nơi lưu trữ riêng dành cho anh và em <br />
-        Từng nụ cười, từng ánh mắt, từng giây phút bình yên nhất.
-      </p>
-
-      <!-- Nút CTA glassmorphism -->
-      <button class="hero-cta fade-rise delay-4" onclick="revealMobileNav('love-counter')">
-        <span>Xem Kỷ Niệm</span>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </div>
-
-    <!-- Mũi tên cuộn xuống -->
-    <div class="hero-scroll-hint fade-rise delay-5">
-      <div class="scroll-arrow">↓</div>
-    </div>
-  </section>
-
-  <!-- ====================================================
-       KHU VỰC ĐẾM NGÀY YÊU (LOVE COUNTER SECTION)
-       ==================================================== -->
-  <section class="love-counter-section" id="love-counter">
-    <div class="section-inner">
-      <!-- Tiêu đề section -->
-      <div class="section-header">
-        <span class="section-eyebrow">♡ Tình Yêu Của Huy & Vy</span>
-        <h2 class="section-title">Đếm Đếm Đếm</h2>
-        <p class="section-subtitle">
-          Chúng mình đã bên nhau kể từ ngày <strong>11 tháng 7, 2025</strong>
-        </p>
-      </div>
-
-      <!-- Khung ảnh tròn đôi - click để thay ảnh -->
-      <div class="counter-photo-wrapper">
-        <label class="counter-photo-frame" for="counterPhotoInput" title="Nhấn để đổi ảnh">
-          <!-- Ảnh mặc định / placeholder -->
-          <img
-            id="counterPhoto"
-            class="counter-photo-img"
-            src=""
-            alt="Ảnh của chúng mình"
-            style="display:none;"
-          />
-          <!-- Placeholder khi chưa có ảnh -->
-          <div class="counter-photo-placeholder" id="counterPhotoPlaceholder">
-            <span class="counter-photo-icon">♡</span>
-            <span class="counter-photo-hint">Thêm ảnh</span>
-          </div>
-          <!-- Overlay khi hover -->
-          <div class="counter-photo-overlay">
-            <span>📷 Đổi ảnh</span>
-          </div>
-          <input
-            type="file"
-            id="counterPhotoInput"
-            accept="image/*"
-            onchange="changeCounterPhoto(this)"
-            hidden
-          />
-        </label>
-        <!-- Vòng trang trí xoay -->
-        <div class="counter-photo-ring"></div>
-        <div class="counter-photo-ring counter-photo-ring--2"></div>
-      </div>
-
-      <!-- Các thẻ đếm thời gian -->
-      <div class="counter-grid">
-        <div class="counter-card" id="counter-days">
-          <div class="counter-value" id="days">000</div>
-          <div class="counter-label">Ngày</div>
-          <div class="counter-glow"></div>
-        </div>
-        <div class="counter-separator">:</div>
-        <div class="counter-card" id="counter-hours">
-          <div class="counter-value" id="hours">00</div>
-          <div class="counter-label">Giờ</div>
-          <div class="counter-glow"></div>
-        </div>
-        <div class="counter-separator">:</div>
-        <div class="counter-card" id="counter-minutes">
-          <div class="counter-value" id="minutes">00</div>
-          <div class="counter-label">Phút</div>
-          <div class="counter-glow"></div>
-        </div>
-        <div class="counter-separator">:</div>
-        <div class="counter-card" id="counter-seconds">
-          <div class="counter-value" id="seconds">00</div>
-          <div class="counter-label">Giây</div>
-          <div class="counter-glow"></div>
-        </div>
-      </div>
-
-      <!-- Câu trích dẫn lãng mạn bên dưới -->
-      <p class="counter-quote">
-        Một nhà hiền triết tên <strong>HuyLee</strong> đã từng nói<br />
-        "Luôn yêu em như những ngày đầu"
-      </p>
-
-    </div>
-  </section>
-
-  <!-- ====================================================
-       KHU VỰC DÒNG THỜI GIAN KỶ NIỆM (TIMELINE SECTION)
-       ==================================================== -->
-  <section class="timeline-section" id="timeline">
-    <div class="section-inner">
-      <!-- Tiêu đề section -->
-      <div class="section-header">
-        <span class="section-eyebrow">✦ Kỷ niệm Huy & Vy ✦</span>
-        <h2 class="section-title">Kỷ niệm và lộ trình</h2>
-        <p class="section-subtitle">
-          Hành trình yêu của Bill và Wuy
-        </p>
-      </div>
-
-      <!-- Bộ lọc + Nút thêm kỷ niệm -->
-      <div class="timeline-actions">
-        <div class="timeline-filter-wrap">
-          <label class="timeline-filter-label" for="yearFilter">📅 Lọc năm:</label>
-          <select id="yearFilter" class="timeline-year-select" onchange="filterTimelineByYear(this.value)">
-            <option value="all">Tất cả</option>
-          </select>
-        </div>
-        <button class="btn-add-memory" id="openAddMemoryBtn">
-          <span>+ Thêm Kỷ Niệm</span>
+        <!-- Nút menu mobile (3 gạch biến thành X) -->
+        <button
+          type="button"
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Mở menu"
+          aria-expanded="false"
+        >
+          <span class="menu-bar bar-1"></span>
+          <span class="menu-bar bar-2"></span>
+          <span class="menu-bar bar-3"></span>
         </button>
       </div>
+    </header>
 
-      <!-- Container hiển thị dòng thời gian -->
-      <div class="timeline-container" id="timelineContainer">
-        <!-- Các kỷ niệm sẽ được render động bởi JavaScript -->
-        <div class="timeline-empty" id="timelineEmpty">
-          <div class="empty-icon-orb empty-icon-orb--lavender">
-            <div class="empty-icon-glow"></div>
-            <div class="empty-icon">📷</div>
-          </div>
-          <p>Chưa có kỷ niệm nào được lưu.<br />Hãy thêm kỷ niệm đầu tiên của chúng mình! ✦</p>
-          <button class="btn-add-memory-empty" onclick="openAddMemoryModal()">
-            + Thêm Kỷ Niệm Đầu Tiên
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====================================================
-       CHUYÊN MỤC: CHINH PHỤC PHÔ TÔ BÚT
-       ==================================================== -->
-  <section class="photobooth-section" id="photobooth">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-eyebrow pb-eyebrow">🎯 Quyết tâm chinh phục phô tô bút</span>
-        <h2 class="section-title pb-title">Chinh Phục Phô Tô Bút</h2>
-        <p class="section-subtitle pb-subtitle">
-          Không tha cho bất kỳ cái photobooth đẹp nào
-        </p>
-      </div>
-      <div class="pb-actions">
-        <button class="pb-add-btn" id="openAddPhotoboothBtn">
-          <span>+ Thêm photobooth</span>
+    <!-- Menu trượt mobile -->
+    <div class="mobile-nav-panel" id="mobileNavPanel" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <a href="#days" class="mobile-nav-link" id="mNavLinkDays">Số ngày nỗ lực</a>
+        <a href="#photos" class="mobile-nav-link" id="mNavLinkPhotos">
+          <span>Hình ảnh của </span><span class="person-name-inline">...</span>
+        </a>
+        <button type="button" class="mobile-admin-btn" id="mOpenAdminBtn">
+          <span>Quản lý</span>
+          <span class="btn-disc-pine">
+            <svg width="6" height="7" viewBox="0 0 6 7" fill="none">
+              <path d="M.6.6 4 4 .6 7.4" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
         </button>
       </div>
-      <div class="pb-grid" id="pbGrid">
-        <div class="pb-empty" id="pbEmpty">
-          <div class="empty-icon-orb empty-icon-orb--orange">
-            <div class="empty-icon-glow"></div>
-            <div class="empty-icon">🎯</div>
+    </div>
+
+    <!-- TRACK TRƯỢT 200% (CHỨA 2 TRANG) -->
+    <main class="pages-track" id="pagesTrack">
+
+      <!-- TRANG 1: SỐ NGÀY NỖ LỰC -->
+      <section class="page-pane page-days" id="pageDays" aria-label="Trang số ngày nỗ lực">
+        <div class="hero-bottom-left" id="heroLeft">
+          <!-- Nhãn teal tên người -->
+          <div class="hero-teal-label mask-clip-row">
+            <span class="animate-lift" id="heroPersonName">Đang tải...</span>
           </div>
-          <p>Chưa có cột mốc nào.<br />Hãy ghi lại thành tích đầu tiên! ✦</p>
-          <button class="pb-add-btn-empty" onclick="openAddPhotoboothModal()">
-            + Thêm thành tích đầu tiên
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ====================================================
-       CHUYÊN MỤC: HÀNH TRÌNH XUYÊN VIỆT
-       ==================================================== -->
-  <section class="journey-section" id="journey">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-eyebrow jn-eyebrow">🗺️ Hành trình đi thỉnh kinh</span>
-        <h2 class="section-title jn-title">Huy & Vy phiêu lưu kí</h2>
-        <p class="section-subtitle jn-subtitle">
-          Những địa điểm Huy & Vy đã cùng nhau đặt chân đến
-        </p>
-      </div>
-      <div class="jn-actions">
-        <button class="jn-add-btn" id="openAddJourneyBtn">
-          <span>+ Thêm Địa Điểm</span>
-        </button>
-      </div>
-      <div class="jn-path-container" id="jnPathContainer">
-        <div class="jn-empty" id="jnEmpty">
-          <div class="empty-icon-orb empty-icon-orb--blue">
-            <div class="empty-icon-glow"></div>
-            <div class="empty-icon">🗺️</div>
+          <!-- Tiêu đề 3 dòng, mỗi dòng trong mask cắt riêng -->
+          <h1 class="hero-headline">
+            <div class="headline-mask-line">
+              <span class="headline-text animate-rise-1" id="headlineLine1">
+                <span class="days-num" id="daysCount">0</span> ngày
+              </span>
+            </div>
+            <div class="headline-mask-line">
+              <span class="headline-text animate-rise-2" id="headlineLine2">
+                nỗ lực không bỏ cuộc
+              </span>
+            </div>
+            <div class="headline-mask-line">
+              <span class="headline-text animate-rise-3" id="headlineLine3">
+                vì <span class="person-name-inline">...</span>
+              </span>
+            </div>
+          </h1>
+
+          <!-- Lede 2 dòng -->
+          <div class="hero-lede">
+            <div class="lede-mask-line">
+              <p class="lede-text animate-lift-lede-1" id="ledeLine1">
+                <span id="counterLiveClock">00 giờ 00 phút 00 giây</span> kể từ <span id="counterStartDateDisplay">--/--/----</span>
+              </p>
+            </div>
+            <div class="lede-mask-line">
+              <p class="lede-text lede-quote animate-lift-lede-2" id="ledeLine2">
+                Mỗi bài học hôm nay là một bước đi tiếp
+              </p>
+            </div>
           </div>
-          <p>Hành trình chưa bắt đầu.<br />Hãy thêm điểm dừng chân đầu tiên! ✦</p>
-          <button class="jn-add-btn-empty" onclick="openAddJourneyModal()">
-            + Thêm Điểm Dừng Chân
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ====================================================
-       MODAL: THÊM / SỬA CỘT MỐC PHÔ TÔ BÚT
-       ==================================================== -->
-  <div class="pb-modal" id="pbModal">
-    <div class="pb-modal-header">
-      <h3 id="pbModalTitle">🎯 Thêm Phô Tô Bút</h3>
-      <button class="modal-close" onclick="closePbModal()">✕</button>
-    </div>
-    <div class="pb-modal-body">
-      <input type="hidden" id="pbEditId" value="" />
-      <div class="form-group">
-        <label class="form-label">Ảnh &amp; Video</label>
-        <label class="upload-area multi-upload-area" for="pbMediaInput" id="pbMediaUploadArea">
-          <div class="upload-placeholder" id="pbMediaPlaceholder">
-            <span class="upload-icon">🎯</span>
-            <span>Nhấn để chọn ảnh hoặc video</span>
-            <span class="upload-hint">JPG, PNG, MP4...</span>
+          <!-- Đoạn chữ cập nhật mỗi phút cho trình đọc màn hình -->
+          <div class="sr-only" id="srTimeAnnounce"></div>
+
+          <!-- Nút hành động -->
+          <div class="hero-actions-row">
+            <a href="#photos" class="pill-cream-cta animate-lift-cta" id="ctaToPhotos">
+              <span>Xem hình ảnh của </span><span class="person-name-inline">...</span>
+              <span class="btn-disc-dark">
+                <svg width="6" height="7" viewBox="0 0 6 7" fill="none">
+                  <path d="M.6.6 4 4 .6 7.4" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+            <button type="button" class="text-link-teal animate-lift-link" id="quickAddPhotoBtn">
+              Thêm hình ảnh
+            </button>
           </div>
-          <input type="file" id="pbMediaInput" accept="image/*,video/*"
-                 multiple onchange="handlePbMediaSelect(this)" hidden />
-        </label>
-        <div id="pbMediaPreviewGrid" class="media-preview-grid" style="display:none;"></div>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="pbTitle">Tiêu đề</label>
-        <input type="text" id="pbTitle" class="form-input" placeholder="Ví dụ: Chụp cùng nhau ở đâu..." />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="pbDate">Ngày</label>
-        <input type="text" id="pbDate" class="form-input" placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off" />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="pbDescription">Mô Tả</label>
-        <textarea id="pbDescription" class="form-textarea" placeholder="Kể về ngày hôm đó ntn rồi lại đây chụp ntn..." rows="3"></textarea>
-      </div>
-    </div>
-    <div class="pb-modal-footer">
-      <button class="btn-secondary" onclick="closePbModal()">Hủy</button>
-      <button class="btn-pb-primary" onclick="savePbMemory()">💾 Lưu</button>
-    </div>
-  </div>
+        </div>
 
-  <!-- ====================================================
-       MODAL: THÊM / SỬA ĐỊA ĐIỂM XUYÊN VIỆT
-       ==================================================== -->
-  <div class="jn-modal" id="jnModal">
-    <div class="jn-modal-header">
-      <h3 id="jnModalTitle">🗺️ Thêm Địa Điểm Mới</h3>
-      <button class="modal-close" onclick="closeJnModal()">✕</button>
-    </div>
-    <div class="jn-modal-body">
-      <input type="hidden" id="jnEditId" value="" />
-      <div class="form-group">
-        <label class="form-label">Ảnh &amp; Video</label>
-        <label class="upload-area multi-upload-area" for="jnMediaInput" id="jnMediaUploadArea">
-          <div class="upload-placeholder" id="jnMediaPlaceholder">
-            <span class="upload-icon">📍</span>
-            <span>Nhấn để chọn ảnh hoặc video</span>
-            <span class="upload-hint">JPG, PNG, MP4...</span>
+        <!-- Cue góc dưới phải trang 1 -->
+        <a href="#photos" class="scroll-cue-btn cue-right animate-lift-cue" id="cueToPhotos" aria-label="Sang trang hình ảnh">
+          <span class="cue-label">Vuốt sang phải</span>
+          <svg class="cue-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M4 2L8 6L4 10" stroke="#7CCBBA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </section>
+
+      <!-- TRANG 2: HÌNH ẢNH CỦA [TÊN] -->
+      <section class="page-pane page-photos" id="pagePhotos" aria-label="Trang hình ảnh" inert aria-hidden="true">
+        <div class="photos-container">
+          <div class="photos-header">
+            <div class="photos-header-text">
+              <h2 class="photos-title">
+                Hình ảnh của <span class="person-name-inline">...</span>
+              </h2>
+              <p class="photos-subtitle">
+                Nhìn vào đây mỗi khi muốn dừng lại
+              </p>
+            </div>
+            <button type="button" class="btn-add-photo-primary" id="page2AddPhotoBtn">
+              <span>+ Thêm hình ảnh</span>
+            </button>
           </div>
-          <input type="file" id="jnMediaInput" accept="image/*,video/*"
-                 multiple onchange="handleJnMediaSelect(this)" hidden />
-        </label>
-        <div id="jnMediaPreviewGrid" class="media-preview-grid" style="display:none;"></div>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="jnTitle">Tiêu đề</label>
-        <input type="text" id="jnTitle" class="form-input" placeholder="Ví dụ: Hành trình đi..." />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="jnLocation">Vị Trí</label>
-        <input type="text" id="jnLocation" class="form-input" placeholder="Ví dụ: Phố cổ Hội An, Quảng Nam" />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="jnDateStart">Ngày Bắt Đầu</label>
-        <input type="text" id="jnDateStart" class="form-input" placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off" />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="jnDateEnd">Ngày Kết Thúc <span style="color:rgba(255,255,255,0.3);font-size:0.75em;">(để trống nếu 1 ngày)</span></label>
-        <input type="text" id="jnDateEnd" class="form-input" placeholder="dd/mm/yyyy (tùy chọn)" maxlength="10" inputmode="numeric" autocomplete="off" />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="jnDescription">Mô Tả chuyến đi </label>
-        <textarea id="jnDescription" class="form-textarea" placeholder="Kể về chuyến đi này..." rows="3"></textarea>
-      </div>
-    </div>
-    <div class="jn-modal-footer">
-      <button class="btn-secondary" onclick="closeJnModal()">Hủy</button>
-      <button class="btn-jn-primary" onclick="saveJnMemory()">💾 Lưu</button>
-    </div>
+
+          <!-- Dải ảnh cuộn ngang với scroll-snap -->
+          <div class="photo-strip-wrapper">
+            <button type="button" class="strip-nav-btn strip-prev" id="stripPrevBtn" aria-label="Cuộn sang trái" title="Trước">
+              &#10094;
+            </button>
+            <div class="photo-scroll-strip" id="photoScrollStrip" tabindex="0" aria-label="Danh sách hình ảnh">
+              <!-- Render động bằng JavaScript -->
+              <div class="photos-empty-card" id="photosEmptyCard">
+                <div class="empty-icon-star">✦</div>
+                <p>Chưa có hình ảnh nào</p>
+                <button type="button" class="btn-empty-add" id="emptyAddBtn">
+                  + Thêm hình ảnh đầu tiên
+                </button>
+              </div>
+            </div>
+            <button type="button" class="strip-nav-btn strip-next" id="stripNextBtn" aria-label="Cuộn sang phải" title="Tiếp">
+              &#10095;
+            </button>
+          </div>
+
+          <!-- Chỉ báo cuộn mảnh -->
+          <div class="strip-scroll-bar">
+            <div class="strip-scroll-thumb" id="stripScrollThumb"></div>
+          </div>
+        </div>
+
+        <!-- Cue góc dưới phải trang 2 -->
+        <a href="#days" class="scroll-cue-btn cue-left" id="cueToDays" aria-label="Về trang số ngày nỗ lực">
+          <svg class="cue-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M8 2L4 6L8 10" stroke="#7CCBBA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="cue-label">Về số ngày nỗ lực</span>
+        </a>
+      </section>
+
+    </main>
   </div>
 
   <!-- ====================================================
-       JOURNEY CATALOG (lightbox chi tiết xuyên việt)
+       LIGHTBOX XEM ẢNH/VIDEO TOÀN MÀN HÌNH (MỤC 7)
        ==================================================== -->
-  <div class="jn-catalog" id="jnCatalog" onclick="closeJnCatalog()">
-    <div class="jn-catalog-content" onclick="event.stopPropagation()">
-      <button class="jn-catalog-close" onclick="closeJnCatalog()">✕</button>
-      <div class="jn-catalog-media" id="jnCatalogMedia"></div>
-      <div class="jn-catalog-info">
-        <div class="jn-catalog-meta">
-          <span class="jn-catalog-date" id="jnCatalogDate"></span>
-          <span class="jn-catalog-location" id="jnCatalogLocation"></span>
-        </div>
-        <h2 class="jn-catalog-title" id="jnCatalogTitle"></h2>
-        <p class="jn-catalog-desc" id="jnCatalogDesc"></p>
-      </div>
-    </div>
-  </div>
+  <div class="river-lightbox" id="riverLightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-blur-bg" id="lightboxBlurBg"></div>
+    <button type="button" class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Đóng xem ảnh">✕</button>
 
-  <!-- Photobooth Catalog Lightbox -->
-  <div class="jn-catalog" id="pbCatalog" onclick="closePbCatalog()">
-    <div class="jn-catalog-content" onclick="event.stopPropagation()">
-      <button class="jn-catalog-close" onclick="closePbCatalog()">✕</button>
-      <div class="jn-catalog-media" id="pbCatalogMedia"></div>
-      <div class="jn-catalog-info">
-        <div class="jn-catalog-meta">
-          <span class="jn-catalog-date" id="pbCatalogDate"></span>
-        </div>
-        <h2 class="jn-catalog-title" id="pbCatalogTitle"></h2>
-        <p class="jn-catalog-desc" id="pbCatalogDesc"></p>
+    <div class="lightbox-content-box">
+      <div class="lightbox-media-wrap" id="lightboxMediaWrap">
+        <button type="button" class="lb-arrow lb-arrow-prev" id="lbPrevBtn" aria-label="Xem ảnh trước">&#10094;</button>
+        <button type="button" class="lb-arrow lb-arrow-next" id="lbNextBtn" aria-label="Xem ảnh sau">&#10095;</button>
+        <div class="lb-counter-pill" id="lbCounterPill">1 / 1</div>
+      </div>
+
+      <div class="lightbox-meta">
+        <span class="lightbox-date" id="lbDate"></span>
+        <h3 class="lightbox-title" id="lbTitle"></h3>
+        <p class="lightbox-desc" id="lbDesc"></p>
       </div>
     </div>
   </div>
 
   <!-- ====================================================
-       KHU VỰC QUẢN LÝ ẢNH VÀ VIDEO (ADMIN PANEL)
+       MODAL THÊM / SỬA HÌNH ẢNH (MỤC 7)
        ==================================================== -->
-
-  <!-- Overlay nền mờ -->
-  <div class="modal-overlay" id="modalOverlay" onclick="closeAllModals()"></div>
-
-  <!-- Modal: Bảng quản lý tổng thể -->
-  <div class="admin-panel" id="adminPanel">
-    <div class="admin-panel-header">
-      <h3>✦ Quản Lý Kỷ Niệm</h3>
-      <button class="modal-close" onclick="closeAdminPanel()">✕</button>
-    </div>
-
-    <div class="admin-panel-body">
-      <!-- Phần thay video nền -->
-      <div class="admin-section">
-        <h4 class="admin-section-title">🎬 Video Nền Chính</h4>
-        <p class="admin-section-desc">Thay video nền hiển thị toàn màn hình</p>
-        <label class="upload-btn" for="bgVideoInput">
-          <span>📁 Chọn Video Mới</span>
-          <input type="file" id="bgVideoInput" accept="video/*" onchange="changeBgVideo(this)" hidden />
-        </label>
-        <p class="admin-note">Hỗ trợ: MP4, WebM · Khuyến nghị: 1920×1080</p>
+  <div class="river-modal-overlay" id="photoModalOverlay" aria-hidden="true">
+    <div class="river-modal glass-panel" id="photoModal" role="dialog" aria-modal="true" aria-labelledby="photoModalTitle">
+      <div class="modal-header">
+        <h3 id="photoModalTitle">✦ Thêm Hình Ảnh</h3>
+        <button type="button" class="modal-close" id="closePhotoModalBtn" aria-label="Đóng">✕</button>
       </div>
 
-      <!-- Danh sách kỷ niệm hiện có -->
-      <div class="admin-section">
-        <h4 class="admin-section-title">📸 Danh Sách Kỷ Niệm</h4>
-        <div class="admin-memory-list" id="adminMemoryList">
-          <!-- Render động bởi JavaScript -->
-        </div>
-      </div>
-    </div>
+      <div class="modal-body">
+        <input type="hidden" id="photoEditId" value="" />
 
-    <div class="admin-panel-footer">
-      <button class="btn-primary" onclick="openAddMemoryModal()">+ Thêm Kỷ Niệm Mới</button>
-    </div>
-  </div>
-
-  <!-- Modal: Thêm / Chỉnh sửa kỷ niệm -->
-  <div class="memory-modal" id="memoryModal">
-    <div class="memory-modal-header">
-      <h3 id="memoryModalTitle">✦ Thêm Kỷ Niệm Mới</h3>
-      <button class="modal-close" onclick="closeMemoryModal()">✕</button>
-    </div>
-
-    <div class="memory-modal-body">
-      <!-- Input ẩn lưu ID đang chỉnh sửa -->
-      <input type="hidden" id="editMemoryId" value="" />
-
-      <!-- Upload nhiều ảnh/video -->
-      <div class="form-group">
-        <label class="form-label">Ảnh &amp; Video</label>
-        <label class="upload-area multi-upload-area" for="memoryMediaInput" id="mediaUploadArea">
-          <div class="upload-placeholder" id="mediaPlaceholder">
+        <div class="form-group">
+          <label class="form-label">Tải lên ảnh & video</label>
+          <label class="upload-dropzone" for="photoFileInput">
             <span class="upload-icon">📷</span>
-            <span>Nhấn để chọn ảnh hoặc video</span>
-            <span class="upload-hint">Chọn nhiều cùng lúc · JPG, PNG, MP4...</span>
-          </div>
-          <input type="file" id="memoryMediaInput" accept="image/*,video/*"
-                 multiple onchange="handleMediaSelect(this)" hidden />
-        </label>
-        <!-- Grid preview ảnh đã chọn -->
-        <div id="mediaPreviewGrid" class="media-preview-grid" style="display:none;"></div>
+            <span class="upload-text">Bấm để chọn một hoặc nhiều file</span>
+            <span class="upload-hint">JPG, PNG, WebP, MP4...</span>
+            <input type="file" id="photoFileInput" accept="image/*,video/*" multiple hidden />
+          </label>
+          <div class="upload-preview-grid" id="photoPreviewGrid"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="photoInputTitle">Tiêu đề</label>
+          <input type="text" id="photoInputTitle" class="form-input" placeholder="Ví dụ: Nụ cười ngày ấy..." />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="photoInputDate">Ngày (dd/mm/yyyy)</label>
+          <input type="text" id="photoInputDate" class="form-input" placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="photoInputDesc">Ghi chú / Cảm xúc</label>
+          <textarea id="photoInputDesc" class="form-textarea" rows="3" placeholder="Nhìn vào đây để nhớ lý do bắt đầu..."></textarea>
+        </div>
       </div>
 
-      <!-- Tiêu đề kỷ niệm -->
-      <div class="form-group">
-        <label class="form-label" for="memoryTitle">Tiêu Đề</label>
-        <input type="text" id="memoryTitle" class="form-input" placeholder="Ví dụ: Huylee yêu ai..." />
-      </div>
-
-      <!-- Ngày tháng -->
-      <div class="form-group">
-        <label class="form-label" for="memoryDate">Ngày</label>
-        <input
-          type="text"
-          id="memoryDate"
-          class="form-input"
-          placeholder="dd/mm/yyyy"
-          maxlength="10"
-          inputmode="numeric"
-          autocomplete="off"
-        />
-      </div>
-
-      <!-- Mô tả -->
-      <div class="form-group">
-        <label class="form-label" for="memoryDescription">Mô Tả</label>
-        <textarea id="memoryDescription" class="form-textarea" placeholder="Kể về kỷ niệm này..." rows="4"></textarea>
-      </div>
-    </div>
-
-    <div class="memory-modal-footer">
-      <button class="btn-secondary" onclick="closeMemoryModal()">Hủy</button>
-      <button class="btn-primary" onclick="saveMemory()">💾 Lưu</button>
-    </div>
-  </div>
-
-  <!-- Modal: Xem chi tiết kỷ niệm (lightbox) -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <button class="lightbox-close">✕</button>
-    <div class="lightbox-content" onclick="event.stopPropagation()">
-      <div class="lightbox-media" id="lightboxMedia"></div>
-      <div class="lightbox-info">
-        <span class="lightbox-date" id="lightboxDate"></span>
-        <h3 class="lightbox-title" id="lightboxTitle"></h3>
-        <p class="lightbox-desc" id="lightboxDesc"></p>
+      <div class="modal-footer">
+        <button type="button" class="btn-cancel" id="cancelPhotoModalBtn">Hủy</button>
+        <button type="button" class="btn-save" id="savePhotoBtn">
+          <span id="savePhotoBtnText">Lưu lại</span>
+        </button>
       </div>
     </div>
   </div>
 
   <!-- ====================================================
-       MOBILE BOTTOM NAVIGATION BAR
-       Chỉ hiển thị trên mobile (max-width: 768px)
+       BẢNG QUẢN LÝ (ADMIN PANEL - MỤC 9)
        ==================================================== -->
-  <nav class="mobile-bottom-nav" id="mobileBottomNav">
-    <button class="mbn-tab active" data-tab="love-counter" onclick="switchMobileTab('love-counter')">
-      <span class="mbn-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-          <path d="M12 20.5s-7.5-4.6-10.1-9.4C.4 8.1 1.7 4.6 5 3.6c2.2-.7 4.4.2 5.5 2 .4.6 1 1.4 1.5 2.2.5-.8 1.1-1.6 1.5-2.2 1.1-1.8 3.3-2.7 5.5-2 3.3 1 4.6 4.5 3.1 7.5C19.5 15.9 12 20.5 12 20.5z"/>
-        </svg>
-      </span>
-      <span class="mbn-label">Đếm Ngày</span>
-    </button>
-    <button class="mbn-tab" data-tab="timeline" onclick="switchMobileTab('timeline')">
-      <span class="mbn-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-          <path d="M12 5.5c-1.6-1.2-3.8-1.8-6.5-1.8-.6 0-1 .4-1 1v12.6c0 .6.4 1 1 1 2.7 0 4.9.6 6.5 1.8 1.6-1.2 3.8-1.8 6.5-1.8.6 0 1-.4 1-1V4.7c0-.6-.4-1-1-1-2.7 0-4.9.6-6.5 1.8z"/>
-          <path d="M12 5.5v13.6"/>
-        </svg>
-      </span>
-      <span class="mbn-label">Kỷ Niệm</span>
-    </button>
-    <button class="mbn-tab" data-tab="photobooth" onclick="switchMobileTab('photobooth')">
-      <span class="mbn-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-          <path d="M4 8.5h2.6l1.2-2h8.4l1.2 2H20a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 18v-8A1.5 1.5 0 0 1 4 8.5z"/>
-          <circle cx="12" cy="13.5" r="3.4"/>
-        </svg>
-      </span>
-      <span class="mbn-label">Phô Tô Bút</span>
-    </button>
-    <button class="mbn-tab" data-tab="journey" onclick="switchMobileTab('journey')">
-      <span class="mbn-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-          <path d="M12 21s-6.8-6.1-6.8-11.3a6.8 6.8 0 1 1 13.6 0C18.8 14.9 12 21 12 21z"/>
-          <circle cx="12" cy="9.7" r="2.4"/>
-        </svg>
-      </span>
-      <span class="mbn-label">Xuyên Việt</span>
-    </button>
-  </nav>
+  <div class="river-modal-overlay" id="adminModalOverlay" aria-hidden="true">
+    <div class="river-modal glass-panel admin-dialog" id="adminModal" role="dialog" aria-modal="true" aria-label="Bảng quản lý">
+      <div class="modal-header">
+        <h3>✦ Bảng Quản Lý</h3>
+        <button type="button" class="modal-close" id="closeAdminModalBtn" aria-label="Đóng">✕</button>
+      </div>
 
-  <!-- FAB button cho mobile - thêm nhanh -->
-  <button class="mobile-fab" id="mobileFab" onclick="mobileFabAction()" title="Thêm mới">
-    <span class="mobile-fab-icon">+</span>
-  </button>
+      <div class="modal-body admin-body">
+        <div class="admin-tab-bar" role="tablist">
+          <button type="button" class="admin-tab-btn active" data-tab="tabInfo" role="tab" aria-selected="true">Thông Tin</button>
+          <button type="button" class="admin-tab-btn" data-tab="tabBg" role="tab" aria-selected="false">Ảnh Nền</button>
+          <button type="button" class="admin-tab-btn" data-tab="tabPw" role="tab" aria-selected="false">Mật Khẩu</button>
+          <button type="button" class="admin-tab-btn" data-tab="tabList" role="tab" aria-selected="false">Quản Lý Ảnh</button>
+        </div>
+
+        <!-- 1. TAB THÔNG TIN -->
+        <div class="admin-tab-pane active" id="tabInfo" role="tabpanel">
+          <div class="form-group">
+            <label class="form-label" for="adminPersonName">Tên người làm động lực</label>
+            <input type="text" id="adminPersonName" class="form-input" placeholder="Ví dụ: Bảo Vy, Vy..." />
+            <small class="form-tip">Cập nhật ngay lập tức trên trang và tiêu đề web mà không cần tải lại.</small>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adminStartDate">Ngày bắt đầu nỗ lực (dd/mm/yyyy)</label>
+            <input type="text" id="adminStartDate" class="form-input" placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" />
+            <small class="form-tip">Đồng hồ đếm ngày và giờ sẽ tính từ mốc thời gian này.</small>
+          </div>
+
+          <button type="button" class="btn-save" id="saveInfoBtn">
+            <span>Lưu Thông Tin</span>
+          </button>
+        </div>
+
+        <!-- 2. TAB ẢNH NỀN -->
+        <div class="admin-tab-pane" id="tabBg" role="tabpanel">
+          <div class="form-group">
+            <label class="form-label">Tải lên ảnh nền mới</label>
+            <label class="upload-dropzone" for="adminBgFileInput">
+              <span class="upload-icon">🖼️</span>
+              <span class="upload-text">Chọn ảnh chân dung chất lượng cao</span>
+              <input type="file" id="adminBgFileInput" accept="image/*" hidden />
+            </label>
+            <div id="bgUploadStatus" class="upload-status-text"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tiêu điểm khuôn mặt (Object Position)</label>
+            <div class="slider-row">
+              <span>Trục X (%):</span>
+              <input type="range" id="bgPosSliderX" min="0" max="100" value="60" />
+              <strong id="bgPosXVal">60%</strong>
+            </div>
+            <div class="slider-row">
+              <span>Trục Y (%):</span>
+              <input type="range" id="bgPosSliderY" min="0" max="100" value="35" />
+              <strong id="bgPosYVal">35%</strong>
+            </div>
+            <small class="form-tip">Kéo thanh trượt để chỉnh khuôn mặt nằm vừa vặn vào khoảng sáng bên phải.</small>
+          </div>
+
+          <div class="bg-preview-box" id="adminBgPreviewBox">
+            <div class="bg-preview-img" id="adminBgPreviewImg"></div>
+          </div>
+
+          <button type="button" class="btn-save" id="saveBgSettingsBtn">
+            <span>Lưu Cấu Hình Ảnh Nền</span>
+          </button>
+        </div>
+
+        <!-- 3. TAB ĐỔI MẬT KHẨU -->
+        <div class="admin-tab-pane" id="tabPw" role="tabpanel">
+          <div class="form-group">
+            <label class="form-label" for="adminCurrentPw">Mật khẩu hiện tại</label>
+            <input type="password" id="adminCurrentPw" class="form-input" placeholder="Nhập mật khẩu đang dùng..." autocomplete="current-password" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adminNewPw">Mật khẩu mới (tối thiểu 6 ký tự)</label>
+            <input type="password" id="adminNewPw" class="form-input" placeholder="Mật khẩu mới..." autocomplete="new-password" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adminConfirmPw">Xác nhận mật khẩu mới</label>
+            <input type="password" id="adminConfirmPw" class="form-input" placeholder="Nhập lại mật khẩu mới..." autocomplete="new-password" />
+          </div>
+
+          <div class="gate-error-msg" id="adminPwMsg"></div>
+
+          <button type="button" class="btn-save" id="saveNewPwBtn">
+            <span>Cập Nhật Mật Khẩu</span>
+          </button>
+        </div>
+
+        <!-- 4. TAB DANH SÁCH ẢNH -->
+        <div class="admin-tab-pane" id="tabList" role="tabpanel">
+          <div class="admin-photos-list" id="adminPhotosList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast thông báo nổi -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
   <script src="script.js"></script>
 </body>
