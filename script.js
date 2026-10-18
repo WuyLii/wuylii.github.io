@@ -13,7 +13,7 @@ const COPY = {
   photosTitlePrefix: "Hình ảnh của",
   photosSubtitle: "Nhìn vào đây mỗi khi muốn dừng lại",
   emptyGallery: "Chưa có hình ảnh nào",
-  defaultName: "Bảo Vy",
+  defaultName: "Động lực của Wuylii",
   defaultStartDate: "2025-07-11",
 };
 
@@ -1623,7 +1623,12 @@ async function loadInitialData() {
 
     const config = await SupabaseAdapter.getAllConfig();
 
-    if (config.person_name) AppState.personName = config.person_name;
+    if (config.person_name && config.person_name !== 'Bảo Vy' && config.person_name !== 'Duy Tịnh') {
+      AppState.personName = config.person_name;
+    } else {
+      AppState.personName = 'Động lực của Wuylii';
+      SupabaseAdapter.setConfig('person_name', 'Động lực của Wuylii').catch(() => {});
+    }
     if (config.start_date) AppState.startDate = config.start_date;
     if (config.bg_image !== undefined) AppState.bgImage = config.bg_image;
     if (config.bg_position) AppState.bgPosition = config.bg_position;
