@@ -188,8 +188,8 @@ const AppState = {
   startDate: COPY.defaultStartDate,
   bgImage: '',
   bgPosition: '60% 35%',
-  // Giá trị khởi tạo mặc định cho mật khẩu 00000000
-  gatePasswordHash: '3a29729acfbdbc0729ec0087ccc3d16a1748cb5fb73d23a186548b3faf2c2800',
+  // Mật khẩu lấy từ CSDL Supabase (không dùng mật khẩu mặc định)
+  gatePasswordHash: '',
 
   photos: [],
   photoMediaMap: {},
@@ -374,10 +374,10 @@ function applyBackgroundImages() {
 // CỔNG BẢO VỆ (PASSWORD GATE LOGIC)
 // =============================================================================
 function initGate() {
-  const explicitlyLocked = localStorage.getItem('memoryGateLocked') === 'true';
+  const isUnlocked = sessionStorage.getItem(STORAGE_UNLOCK_KEY) === 'true';
   const gateEl = document.getElementById('memoryGate');
 
-  if (!explicitlyLocked) {
+  if (isUnlocked) {
     if (gateEl) {
       gateEl.classList.add('gate-hidden');
       gateEl.style.display = 'none';
@@ -390,6 +390,8 @@ function initGate() {
       gateEl.style.display = 'flex';
     }
     document.body.classList.add('gate-active');
+    const pwInput = document.getElementById('gatePasswordInput');
+    if (pwInput) pwInput.focus();
   }
 
   const pwInput = document.getElementById('gatePasswordInput');
@@ -439,7 +441,8 @@ function initGate() {
 }
 
 function lockGate() {
-  localStorage.setItem('memoryGateLocked', 'true');
+  sessionStorage.removeItem(STORAGE_UNLOCK_KEY);
+  localStorage.removeItem('memoryGateLocked');
   const gateEl = document.getElementById('memoryGate');
   if (gateEl) {
     gateEl.style.display = 'flex';
@@ -470,10 +473,21 @@ async function handleUnlockAttempt() {
     return;
   }
 
-  const enteredHash = await sha256(entered + CLIENT_SALT);
-  const isDefaultPw = entered === '00000000';
+  // Lấy mật khẩu từ CSDL Supabase nếu chưa có sẵn
+  if (!AppState.gatePasswordHash) {
+    try {
+      const config = await SupabaseAdapter.getAllConfig();
+      if (config.gate_password_hash) {
+        AppState.gatePasswordHash = config.gate_password_hash;
+      }
+    } catch (e) {
+      console.warn('Không thể kết nối CSDL để lấy mật khẩu:', e);
+    }
+  }
 
-  if ((AppState.gatePasswordHash && enteredHash === AppState.gatePasswordHash) || isDefaultPw) {
+  const enteredHash = await sha256(entered + CLIENT_SALT);
+
+  if (AppState.gatePasswordHash && enteredHash === AppState.gatePasswordHash) {
     if (errorEl) errorEl.textContent = '';
     AppState.consecutiveFailedAttempts = 0;
 
@@ -481,7 +495,6 @@ async function handleUnlockAttempt() {
     if (overlay) overlay.classList.add('flash-in');
 
     setTimeout(() => {
-      localStorage.removeItem('memoryGateLocked');
       sessionStorage.setItem(STORAGE_UNLOCK_KEY, 'true');
       const gateEl = document.getElementById('memoryGate');
       if (gateEl) {
