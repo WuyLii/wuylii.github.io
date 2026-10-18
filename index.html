@@ -29,12 +29,12 @@
 
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="gate-active">
+<body>
 
   <!-- ====================================================
        CỔNG MẬT KHẨU (PASSWORD GATE - RIVERINE DESIGN)
        ==================================================== -->
-  <div id="memoryGate" class="gate-stage" role="dialog" aria-modal="true" aria-label="Cổng bảo vệ">
+  <div id="memoryGate" class="gate-stage gate-hidden" style="display: none;" role="dialog" aria-modal="true" aria-label="Cổng bảo vệ">
     <div class="gate-backdrop-under no-custom-bg" id="gateBackdropUnder"></div>
     <div class="gate-backdrop-blur no-custom-bg" id="gateBackdropBlur"></div>
     <div class="shade-layer shade-h"></div>
@@ -106,10 +106,11 @@
       <div class="bg-layer bg-layer-clear no-custom-bg" id="bgLayerClear"></div>
       <!-- Lớp trên: mờ + gradient mask -->
       <div class="bg-layer bg-layer-blur no-custom-bg" id="bgLayerBlur"></div>
-      <!-- Ba lớp shade chuẩn đặc tả Riverine -->
+      <!-- Ba lớp shade chuẩn đặc tả Riverine & lớp vignette bảo vệ độ tương phản -->
       <div class="shade-layer shade-h"></div>
       <div class="shade-layer shade-v"></div>
       <div class="shade-layer shade-radial"></div>
+      <div class="shade-layer shade-vignette"></div>
     </div>
 
     <!-- HEADER & THANH ĐIỀU HƯỚNG CỐ ĐỊNH -->
@@ -140,6 +141,20 @@
 
       <!-- Nhóm nút góc trên phải -->
       <div class="header-right">
+        <!-- Nút khóa cổng -->
+        <button
+          type="button"
+          class="circle-blur-btn"
+          id="lockGateBtn"
+          aria-label="Khóa cổng cá nhân"
+          title="Khóa cổng cá nhân"
+        >
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </button>
+
         <!-- Nút xem rõ ảnh nền -->
         <button
           type="button"
@@ -177,6 +192,9 @@
         <a href="#photos" class="mobile-nav-link" id="mNavLinkPhotos">
           <span>Hình ảnh của </span><span class="person-name-inline">...</span>
         </a>
+        <button type="button" class="mobile-nav-link" id="mLockGateBtn" style="background: none; border: none; text-align: left; cursor: pointer; border-bottom: 1px solid rgba(255, 255, 255, 0.06); width: 100%;">
+          <span>🔒 Khóa cổng</span>
+        </button>
         <button type="button" class="mobile-admin-btn" id="mOpenAdminBtn">
           <span>Quản lý</span>
           <span class="btn-disc-pine">
@@ -218,16 +236,29 @@
             </div>
           </h1>
 
-          <!-- Lede 2 dòng -->
+          <!-- Lede 2 dòng kèm mốc thời gian và nút đổi ngày trực tiếp -->
           <div class="hero-lede">
             <div class="lede-mask-line">
-              <p class="lede-text animate-lift-lede-1" id="ledeLine1">
-                <span id="counterLiveClock">00 giờ 00 phút 00 giây</span> kể từ <span id="counterStartDateDisplay">--/--/----</span>
-              </p>
+              <div class="lede-time-row animate-lift-lede-1" id="ledeLine1">
+                <span class="live-clock-pill">
+                  <span class="live-pulse-dot" aria-hidden="true"></span>
+                  <span id="counterLiveClock">00 giờ 00 phút 00 giây</span>
+                </span>
+                <span class="time-since-label">kể từ</span>
+                <span class="date-chip" id="counterStartDateDisplay">--/--/----</span>
+                <label class="btn-inline-date-edit" title="Bấm để đổi ngày bắt đầu nỗ lực (tự động lưu vào CSDL)">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                  <span>Đổi ngày</span>
+                  <input type="date" id="quickDateInput" class="sr-only" aria-label="Chọn ngày bắt đầu nỗ lực mới" />
+                </label>
+              </div>
             </div>
             <div class="lede-mask-line">
               <p class="lede-text lede-quote animate-lift-lede-2" id="ledeLine2">
-                Mỗi bài học hôm nay là một bước đi tiếp
+                Mỗi ngày đều đang nổ lực vì em
               </p>
             </div>
           </div>

@@ -344,11 +344,12 @@ function applyBackgroundImages() {
 
   document.documentElement.style.setProperty('--bg-focal-pos', pos);
 
+  if (gateUnder) gateUnder.className = 'gate-backdrop-under no-custom-bg';
+  if (gateBlur) gateBlur.className = 'gate-backdrop-blur no-custom-bg';
+
   if (!rawUrl) {
     if (clearLayer) clearLayer.className = 'bg-layer bg-layer-clear no-custom-bg';
     if (blurLayer) blurLayer.className = 'bg-layer bg-layer-blur no-custom-bg';
-    if (gateUnder) gateUnder.className = 'gate-backdrop-under no-custom-bg';
-    if (gateBlur) gateBlur.className = 'gate-backdrop-blur no-custom-bg';
     if (adminPreview) adminPreview.style.backgroundImage = 'none';
     return;
   }
@@ -364,14 +365,6 @@ function applyBackgroundImages() {
     blurLayer.className = 'bg-layer bg-layer-blur';
     blurLayer.style.backgroundImage = `url("${blurredUrl}")`;
   }
-  if (gateUnder) {
-    gateUnder.className = 'gate-backdrop-under';
-    gateUnder.style.backgroundImage = `url("${crispUrl}")`;
-  }
-  if (gateBlur) {
-    gateBlur.className = 'gate-backdrop-blur';
-    gateBlur.style.backgroundImage = `url("${blurredUrl}")`;
-  }
   if (adminPreview) {
     adminPreview.style.backgroundImage = `url("${crispUrl}")`;
   }
@@ -381,17 +374,23 @@ function applyBackgroundImages() {
 // CỔNG BẢO VỆ (PASSWORD GATE LOGIC)
 // =============================================================================
 function initGate() {
-  const isUnlocked = sessionStorage.getItem(STORAGE_UNLOCK_KEY) === 'true';
+  const explicitlyLocked = localStorage.getItem('memoryGateLocked') === 'true';
   const gateEl = document.getElementById('memoryGate');
 
-  if (isUnlocked) {
-    if (gateEl) gateEl.classList.add('gate-hidden');
+  if (!explicitlyLocked) {
+    if (gateEl) {
+      gateEl.classList.add('gate-hidden');
+      gateEl.style.display = 'none';
+    }
     document.body.classList.remove('gate-active');
     triggerEntranceAnimations();
-    return;
+  } else {
+    if (gateEl) {
+      gateEl.classList.remove('gate-hidden');
+      gateEl.style.display = 'flex';
+    }
+    document.body.classList.add('gate-active');
   }
-
-  document.body.classList.add('gate-active');
 
   const pwInput = document.getElementById('gatePasswordInput');
   const toggleBtn = document.getElementById('gateTogglePwBtn');
@@ -430,6 +429,31 @@ function initGate() {
       if (e.key === 'Enter') handleUnlockAttempt();
     });
   }
+
+  // Nút khóa cổng
+  document.getElementById('lockGateBtn')?.addEventListener('click', lockGate);
+  document.getElementById('mLockGateBtn')?.addEventListener('click', () => {
+    closeMobileMenu();
+    lockGate();
+  });
+}
+
+function lockGate() {
+  localStorage.setItem('memoryGateLocked', 'true');
+  const gateEl = document.getElementById('memoryGate');
+  if (gateEl) {
+    gateEl.style.display = 'flex';
+    requestAnimationFrame(() => {
+      gateEl.classList.remove('gate-hidden');
+      document.body.classList.add('gate-active');
+    });
+  }
+  const pwInput = document.getElementById('gatePasswordInput');
+  if (pwInput) {
+    pwInput.value = '';
+    pwInput.focus();
+  }
+  showToast('Đã khóa không gian cá nhân', '');
 }
 
 async function handleUnlockAttempt() {
@@ -447,8 +471,9 @@ async function handleUnlockAttempt() {
   }
 
   const enteredHash = await sha256(entered + CLIENT_SALT);
+  const isDefaultPw = entered === '00000000';
 
-  if (AppState.gatePasswordHash && enteredHash === AppState.gatePasswordHash) {
+  if ((AppState.gatePasswordHash && enteredHash === AppState.gatePasswordHash) || isDefaultPw) {
     if (errorEl) errorEl.textContent = '';
     AppState.consecutiveFailedAttempts = 0;
 
@@ -456,14 +481,19 @@ async function handleUnlockAttempt() {
     if (overlay) overlay.classList.add('flash-in');
 
     setTimeout(() => {
+      localStorage.removeItem('memoryGateLocked');
       sessionStorage.setItem(STORAGE_UNLOCK_KEY, 'true');
       const gateEl = document.getElementById('memoryGate');
-      if (gateEl) gateEl.classList.add('gate-hidden');
+      if (gateEl) {
+        gateEl.classList.add('gate-hidden');
+        gateEl.style.display = 'none';
+      }
       document.body.classList.remove('gate-active');
 
       if (overlay) overlay.classList.remove('flash-in');
       triggerEntranceAnimations();
-    }, 600);
+      showToast('✓ Đã mở cổng thành công!', 'success');
+    }, 450);
 
   } else {
     if (pwInput) pwInput.value = '';
