@@ -310,24 +310,25 @@ function updateLoveCounter() {
 // CẬP NHẬT GIAO DIỆN THEO TÊN & CẤU HÌNH CSDL
 // =============================================================================
 function applyConfigToUI() {
-  const fixedName = "Động lực của Wuylii";
+  const name = AppState.personName || COPY.defaultName;
+  const fixedBadgeName = "Động lực của Wuylii";
 
-  document.title = fixedName;
+  document.title = `Nỗ lực vì ${name} ♡`;
   document.querySelectorAll('.person-name-inline').forEach(el => {
-    el.textContent = fixedName;
+    el.textContent = name;
   });
 
   const heroNameEl = document.getElementById('heroPersonName');
-  if (heroNameEl) heroNameEl.textContent = fixedName;
+  if (heroNameEl) heroNameEl.textContent = fixedBadgeName;
 
   const discEl = document.getElementById('brandInitialDisc');
   if (discEl) {
-    const firstChar = fixedName.trim().charAt(0) || 'Đ';
+    const firstChar = fixedBadgeName.trim().charAt(0) || 'Đ';
     discEl.textContent = firstChar.toUpperCase();
   }
 
   const logoLink = document.getElementById('brandLogoLink');
-  if (logoLink) logoLink.setAttribute('aria-label', `Trang ${fixedName}`);
+  if (logoLink) logoLink.setAttribute('aria-label', `Trang ${fixedBadgeName}`);
 
   applyBackgroundImages();
 }
@@ -1182,7 +1183,9 @@ function openAdminModal() {
     overlay.setAttribute('aria-hidden', 'false');
   }
 
+  const nameInput = document.getElementById('adminPersonName');
   const dateInput = document.getElementById('adminStartDate');
+  if (nameInput) nameInput.value = AppState.personName;
   if (dateInput) dateInput.value = formatDate(AppState.startDate);
 
   const parts = (AppState.bgPosition || '60% 35%').split(' ');
@@ -1254,16 +1257,25 @@ function initAdminEvents() {
   const saveInfoBtn = document.getElementById('saveInfoBtn');
   if (saveInfoBtn) {
     saveInfoBtn.addEventListener('click', async () => {
+      const nameInput = document.getElementById('adminPersonName');
       const dateInput = document.getElementById('adminStartDate');
+      const newName = nameInput ? nameInput.value.trim() : '';
       const newDateStr = dateInput ? dateInput.value.trim() : '';
+
+      if (!newName) {
+        showToast('Vui lòng nhập tên người làm động lực!', 'error');
+        return;
+      }
 
       const isoDate = parseInputDateToIso(newDateStr);
 
       try {
         saveInfoBtn.disabled = true;
         showToast('Đang lưu thông tin...', '');
+        await SupabaseAdapter.setConfig('person_name', newName);
         await SupabaseAdapter.setConfig('start_date', isoDate);
 
+        AppState.personName = newName;
         AppState.startDate = isoDate;
         applyConfigToUI();
         updateLoveCounter();
