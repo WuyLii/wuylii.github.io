@@ -1578,6 +1578,26 @@ function cleanupEntranceStyles() {
 }
 
 // =============================================================================
+// SUPABASE HEARTBEAT / PING (CHỐNG PAUSE DATABASE DO INACTIVITY)
+// =============================================================================
+async function pingSupabaseHeartbeat() {
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/site_config?select=id&limit=1`, {
+      method: 'GET',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`
+      }
+    });
+  } catch (err) {
+    // Silent fail if offline
+  }
+}
+
+// Định kỳ ping mỗi 12 tiếng khi tab mở để reset bộ đếm inactivity của Supabase
+setInterval(pingSupabaseHeartbeat, 12 * 60 * 60 * 1000);
+
+// =============================================================================
 // TẢI DỮ LIỆU TỪ CSDL SUPABASE
 // =============================================================================
 async function loadInitialData() {
@@ -1585,6 +1605,9 @@ async function loadInitialData() {
   if (loadingEl) loadingEl.style.display = 'flex';
 
   try {
+    // Ping heartbeat khi tải dữ liệu ban đầu
+    pingSupabaseHeartbeat();
+
     const config = await SupabaseAdapter.getAllConfig();
 
     if (config.person_name) AppState.personName = config.person_name;
