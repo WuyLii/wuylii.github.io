@@ -18,10 +18,10 @@ const COPY = {
 };
 
 // CẤU HÌNH CLOUDINARY & SUPABASE
-const CLOUDINARY_CLOUD_NAME    = import.meta.env?.VITE_CLOUDINARY_CLOUD_NAME || 'dmq9orepw';
-const CLOUDINARY_UPLOAD_PRESET = import.meta.env?.VITE_CLOUDINARY_UPLOAD_PRESET || 'memory_gallery';
-const SUPABASE_URL = import.meta.env?.VITE_SUPABASE_URL || 'https://nafjrifwubpujvqrbkaj.supabase.co';
-const SUPABASE_KEY = import.meta.env?.VITE_SUPABASE_ANON_KEY || 'sb_publishable_A7Rkd6AM1gUgJKcYzzht0g_bS5GMwkl';
+const CLOUDINARY_CLOUD_NAME    = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 const STORAGE_UNLOCK_KEY = 'memoryGateUnlocked';
 
