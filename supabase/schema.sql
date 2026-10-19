@@ -95,6 +95,7 @@ CREATE POLICY "Allow anon all on person_photo_media"
 INSERT INTO public.site_config (key, value)
 VALUES
   ('gate_password_hash', '3a29729acfbdbc0729ec0087ccc3d16a1748cb5fb73d23a186548b3faf2c2800'),
+  ('gate_password_salt', 'wuylii_motivation_salt_v1'),
   ('person_name', 'Bảo Vy'),
   ('start_date', '2025-07-11'),
   ('bg_image', ''),

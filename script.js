@@ -23,8 +23,6 @@ const CLOUDINARY_UPLOAD_PRESET = import.meta.env?.VITE_CLOUDINARY_UPLOAD_PRESET 
 const SUPABASE_URL = import.meta.env?.VITE_SUPABASE_URL || 'https://nafjrifwubpujvqrbkaj.supabase.co';
 const SUPABASE_KEY = import.meta.env?.VITE_SUPABASE_ANON_KEY || 'sb_publishable_A7Rkd6AM1gUgJKcYzzht0g_bS5GMwkl';
 
-// CHUỖI SALT CỐ ĐỊNH PHÍA CLIENT
-const CLIENT_SALT = 'wuylii_motivation_salt_v1';
 const STORAGE_UNLOCK_KEY = 'memoryGateUnlocked';
 
 // HÀM BĂM SHA-256 BẰNG CRYPTO API
@@ -190,6 +188,7 @@ const AppState = {
   bgPosition: '60% 35%',
   // Mật khẩu lấy từ CSDL Supabase (không dùng mật khẩu mặc định)
   gatePasswordHash: '',
+  gatePasswordSalt: '',
 
   photos: [],
   photoMediaMap: {},
@@ -475,19 +474,20 @@ async function handleUnlockAttempt() {
     return;
   }
 
-  // Lấy mật khẩu từ CSDL Supabase nếu chưa có sẵn
+  // Lấy mật khẩu và salt từ CSDL Supabase nếu chưa có sẵn
   if (!AppState.gatePasswordHash) {
     try {
       const config = await SupabaseAdapter.getAllConfig();
       if (config.gate_password_hash) {
         AppState.gatePasswordHash = config.gate_password_hash;
+        AppState.gatePasswordSalt = config.gate_password_salt || ''; // Fetch salt
       }
     } catch (e) {
       console.warn('Không thể kết nối CSDL để lấy mật khẩu:', e);
     }
   }
 
-  const enteredHash = await sha256(entered + CLIENT_SALT);
+  const enteredHash = await sha256(entered + (AppState.gatePasswordSalt || ''));
 
   if (AppState.gatePasswordHash && enteredHash === AppState.gatePasswordHash) {
     if (errorEl) errorEl.textContent = '';
