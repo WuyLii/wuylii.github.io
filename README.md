@@ -1,67 +1,58 @@
-# Trang Web Động Lực (wuylii_github_io)
+# Trang Web Động Lực của Wuylii (React + Vite)
 
-Trang web cá nhân truyền cảm hứng và động lực học tập, nỗ lực không ngừng vì người bạn yêu thương. Thiết kế theo phong cách đặc tả **Riverine** (HTML, CSS, JavaScript thuần) với bố cục 2 trang trượt ngang 100dvh, hiệu ứng mờ 2 lớp ảnh nền, đếm ngày nỗ lực theo thời gian thực và thư viện hình ảnh truyền cảm hứng.
+Trang web cá nhân truyền cảm hứng và động lực học tập, nỗ lực không ngừng vì người bạn yêu thương. Thiết kế theo phong cách đặc tả **Riverine** được viết lại bằng **React + TypeScript + Vite**, với bố cục 2 trang trượt ngang 100dvh, hiệu ứng mờ 2 lớp ảnh nền parallax, đếm ngày nỗ lực theo thời gian thực (UTC+7) và thư viện hình ảnh/video truyền cảm hứng.
 
 ---
 
 ## 1. Mục Đích & Cấu Trúc Trang Web
 
 - **Trang 1: Số ngày nỗ lực (`#days`)**:
-  - Tiêu đề 3 dòng thiết kế Riverine: số ngày nỗ lực, "nỗ lực không bỏ cuộc", "vì [Tên]".
-  - Đồng hồ đếm thời gian thực theo giờ Việt Nam (UTC+7): giờ, phút, giây kể từ ngày bắt đầu.
-  - Lời nhắc nhở động lực: *"Mỗi bài học hôm nay là một bước đi tiếp"*.
-  - Nút chuyển sang thư viện hình ảnh và liên kết thêm nhanh hình ảnh.
+  - Tiêu đề 3 dòng phong cách Riverine: số ngày nỗ lực, "nỗ lực không bỏ cuộc", "vì [Tên]".
+  - Đồng hồ đếm thời gian thực theo múi giờ Việt Nam (UTC+7): số ngày, giờ, phút, giây kể từ ngày bắt đầu.
+  - Lời nhắc nhở động lực: *"Mỗi ngày đều đang nổ lực vì em"*.
+  - Nút chuyển sang thư viện hình ảnh và nút thêm nhanh hình ảnh.
+  - Nút đổi nhanh ngày bắt đầu nỗ lực trực tiếp trên thanh đếm thời gian.
+
 - **Trang 2: Hình ảnh của [Tên] (`#photos`)**:
-  - Dải thẻ kính cuộn ngang (tỉ lệ 3:4) chứa hình ảnh/video của người làm động lực.
-  - Lightbox toàn màn hình xem ảnh/video với nền mờ làm từ chính bức ảnh đang xem.
-- **Cổng mật khẩu (Password Gate)**:
+  - Dải thẻ kính cuộn ngang (tỉ lệ 3:4) chứa hình ảnh và video của người làm động lực.
+  - Thanh cuộn tùy chỉnh và nút điều hướng trái/phải.
+  - Lightbox toàn màn hình xem ảnh/video với nền mờ làm từ chính bức ảnh đang xem, hỗ trợ phím mũi tên và phím Escape.
+
+- **Cổng Mật Khẩu (Password Gate)**:
   - Màn hình khoá tối giản phong cách Riverine, kiểm tra mật khẩu bằng thuật toán băm SHA-256 kèm salt phía client.
-  - Mật khẩu khởi tạo: `00000000` (8 số 0).
+  - Mật khẩu khởi tạo mặc định: `00000000` (8 số 0).
   - Tự động khoá nút mở 30 giây nếu nhập sai 5 lần liên tiếp.
+
 - **Bảng Quản Lý (Admin Panel)**:
-  - Đổi tên người làm động lực và ngày bắt đầu (cập nhật tức thì không cần tải lại trang).
-  - Tải lên ảnh nền mới qua Cloudinary và chỉnh 2 thanh trượt tiêu điểm (Object Position X/Y).
-  - Đổi mật khẩu mở cổng.
-  - Quản lý, chỉnh sửa và xoá hình ảnh trong thư viện.
+  - Tab Thông tin: Đổi tên người làm động lực và ngày bắt đầu (cập nhật tức thì).
+  - Tab Ảnh nền: Tải lên ảnh nền mới và chỉnh 2 thanh trượt tiêu điểm khuôn mặt (Object Position X/Y) với khung xem trước.
+  - Tab Mật khẩu: Đổi mật khẩu mở cổng bảo vệ.
+  - Tab Quản lý ảnh: Quản lý, chỉnh sửa và xoá hình ảnh/video trong thư viện.
 
 ---
 
-## 2. Hướng Dẫn Cấu Hình Cơ Sở Dữ Liệu (Supabase)
+## 2. Kiến Trúc Kỹ Thuật
 
-Website kết nối trực tiếp qua Supabase REST API (sử dụng `fetch` thuần, không cần SDK):
-
-1. Đăng nhập vào [Supabase Dashboard](https://supabase.com/dashboard).
-2. Mở project của bạn (`nafjrifwubpujvqrbkaj`).
-3. Chọn mục **SQL Editor** ở thanh công cụ bên trái.
-4. Mở file `supabase/schema.sql` trong mã nguồn, sao chép toàn bộ nội dung và dán vào SQL Editor, sau đó bấm **Run**.
-5. Script sẽ tự động tạo:
-   - `site_config`: Bảng lưu tên, ngày bắt đầu, hash mật khẩu, URL ảnh nền và vị trí tiêu điểm.
-   - `person_photos`: Bảng lưu thông tin các cột mốc/hình ảnh.
-   - `person_photo_media`: Bảng lưu danh sách media (ảnh, video) chi tiết liên kết với `person_photos`.
-   - Bật RLS và các policy cho phép truy cập qua khóa `anon`.
-   - Seed sẵn mật khẩu `00000000` ban đầu.
-
-*Lưu ý: Không xoá các bảng cũ (memories, photobooth, journey...); website mới hoạt động độc lập trên các bảng mới.*
+- **Frontend Framework**: React 19 + TypeScript + Vite
+- **Thiết Kế**: Hệ thống tokens và quy chuẩn Riverine Design System (responsive `--u` đơn vị đo linh hoạt, glassmorphism, parallax background, typography display & brand).
+- **Lưu Trữ & Dữ Liệu**:
+  - Hỗ trợ đồng bộ REST API với Supabase (`site_config`, `person_photos`, `person_photo_media`).
+  - Tự động tích hợp LocalStorage fallback để ứng dụng luôn hoạt động mượt mà ngay cả khi chưa thiết lập API keys hoặc khi offline.
+- **Tải Ảnh & Media**:
+  - Hỗ trợ Cloudinary Adapter tải trực tiếp ảnh/video và tạo biến đổi ảnh tối ưu (`f_auto,q_auto,w_1920` / `w_480`).
+  - Tích hợp fallback data URL khi chưa cấu hình Cloudinary.
 
 ---
 
-## 3. Cấu Hình Tải Ảnh (Cloudinary)
+## 3. Khởi Chạy Ứng Dụng
 
-- **Cloud Name**: `dmq9orepw`
-- **Upload Preset**: `memory_gallery` (loại unsigned preset).
-- Ảnh và video được tải trực tiếp lên Cloudinary thông qua `CloudinaryAdapter` và lưu URL trả về vào Supabase.
-- Tự động chèn tham số biến đổi `f_auto,q_auto,w_1920` cho lớp ảnh nét và `w_480` cho lớp ảnh mờ để tối ưu tốc độ tải.
+Cài đặt các gói phụ thuộc và chạy môi trường dev:
+```bash
+npm install
+npm run dev
+```
 
----
-
-## 4. Hướng Dẫn Triển Khai Lên Vercel (Static Site)
-
-Dự án sử dụng **HTML, CSS, JavaScript thuần**, không sử dụng framework hay bước build phức tạp, hoàn toàn tương thích để chạy như site tĩnh trên Vercel:
-
-1. Đẩy mã nguồn lên repository GitHub của bạn (`wuylii/wuylii.github.io`).
-2. Đăng nhập vào [Vercel](https://vercel.com) và chọn **Add New Project** -> **Import Git Repository**.
-3. Tại phần **Framework Preset**, chọn **Other** (hoặc để mặc định).
-4. Phần **Build and Output Settings**:
-   - **Build Command**: Để trống.
-   - **Output Directory**: Để trống (hoặc `.`).
-5. Bấm **Deploy**. Trang web sẽ được triển khai trực tiếp tức thì.
+Build cho môi trường production:
+```bash
+npm run build
+```
