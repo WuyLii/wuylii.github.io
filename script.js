@@ -311,25 +311,25 @@ function updateLoveCounter() {
 // =============================================================================
 function applyConfigToUI() {
   const dbName = AppState.personName || COPY.defaultName;
-  const FIXED_BADGE_NAME = "Động lực của Wuylii";
 
-  // 1. DYNAMIC PARTS (from DB)
-  document.title = `Nỗ lực vì ${dbName} ♡`;
+  // 1. FIXED TAB TITLE (UI-only)
+  document.title = "Động lực của Wuylii";
+
+  // 2. DYNAMIC PARTS (from DB: Header, Badge, Inline)
   document.querySelectorAll('.person-name-inline').forEach(el => {
     el.textContent = dbName;
   });
 
-  // 2. FIXED BADGE PARTS (Hardcoded UI-only)
   const heroNameEl = document.getElementById('heroPersonName');
-  if (heroNameEl) heroNameEl.textContent = FIXED_BADGE_NAME;
+  if (heroNameEl) heroNameEl.textContent = dbName;
 
   const discEl = document.getElementById('brandInitialDisc');
   if (discEl) {
-    discEl.textContent = 'Đ'; // First letter of FIXED_BADGE_NAME
+    discEl.textContent = dbName.trim().charAt(0).toUpperCase() || 'Đ';
   }
 
   const logoLink = document.getElementById('brandLogoLink');
-  if (logoLink) logoLink.setAttribute('aria-label', `Trang ${FIXED_BADGE_NAME}`);
+  if (logoLink) logoLink.setAttribute('aria-label', `Trang ${dbName}`);
 
   applyBackgroundImages();
 }
