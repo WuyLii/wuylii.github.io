@@ -310,25 +310,26 @@ function updateLoveCounter() {
 // CẬP NHẬT GIAO DIỆN THEO TÊN & CẤU HÌNH CSDL
 // =============================================================================
 function applyConfigToUI() {
-  const name = AppState.personName || COPY.defaultName;
-  const fixedBadgeName = "Động lực của Wuylii";
+  const dbName = AppState.personName || COPY.defaultName;
+  const FIXED_BADGE_NAME = "Động lực của Wuylii";
 
-  document.title = `Nỗ lực vì ${name} ♡`;
+  // 1. DYNAMIC PARTS (from DB)
+  document.title = `Nỗ lực vì ${dbName} ♡`;
   document.querySelectorAll('.person-name-inline').forEach(el => {
-    el.textContent = name;
+    el.textContent = dbName;
   });
 
+  // 2. FIXED BADGE PARTS (Hardcoded UI-only)
   const heroNameEl = document.getElementById('heroPersonName');
-  if (heroNameEl) heroNameEl.textContent = fixedBadgeName;
+  if (heroNameEl) heroNameEl.textContent = FIXED_BADGE_NAME;
 
   const discEl = document.getElementById('brandInitialDisc');
   if (discEl) {
-    const firstChar = fixedBadgeName.trim().charAt(0) || 'Đ';
-    discEl.textContent = firstChar.toUpperCase();
+    discEl.textContent = 'Đ'; // First letter of FIXED_BADGE_NAME
   }
 
   const logoLink = document.getElementById('brandLogoLink');
-  if (logoLink) logoLink.setAttribute('aria-label', `Trang ${fixedBadgeName}`);
+  if (logoLink) logoLink.setAttribute('aria-label', `Trang ${FIXED_BADGE_NAME}`);
 
   applyBackgroundImages();
 }
@@ -1624,11 +1625,11 @@ async function loadInitialData() {
 
     const config = await SupabaseAdapter.getAllConfig();
 
-    if (config.person_name && config.person_name !== 'Bảo Vy' && config.person_name !== 'Duy Tịnh') {
+    if (config.person_name) {
       AppState.personName = config.person_name;
     } else {
-      AppState.personName = 'Động lực của Wuylii';
-      SupabaseAdapter.setConfig('person_name', 'Động lực của Wuylii').catch(() => {});
+      AppState.personName = 'Người nỗ lực';
+      SupabaseAdapter.setConfig('person_name', 'Người nỗ lực').catch(() => {});
     }
     if (config.start_date) AppState.startDate = config.start_date;
     if (config.bg_image !== undefined) AppState.bgImage = config.bg_image;
