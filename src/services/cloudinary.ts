@@ -53,6 +53,21 @@ export const CloudinaryAdapter = {
 
   getOptimizedUrl(url: string, params: string): string {
     if (!url || !url.includes('res.cloudinary.com')) return url;
-    return url.replace('/upload/', `/upload/${params}/`);
+    const uploadIdx = url.indexOf('/upload/');
+    if (uploadIdx === -1) return url;
+    const prefix = url.slice(0, uploadIdx + 8);
+    const rest = url.slice(uploadIdx + 8);
+
+    // If rest has existing transformation parameters before /v[0-9]+ or filename, replace them
+    const match = rest.match(/^(?:([a-zA-Z0-9_,]+)\/)?(v\d+\/.+)$/);
+    if (match) {
+      return `${prefix}${params}/${match[2]}`;
+    }
+    return `${prefix}${params}/${rest}`;
+  },
+
+  getHighResUrl(url: string): string {
+    if (!url || !url.includes('res.cloudinary.com')) return url;
+    return this.getOptimizedUrl(url, 'f_auto,q_auto:best');
   },
 };

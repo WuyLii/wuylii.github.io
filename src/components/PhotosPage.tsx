@@ -133,7 +133,7 @@ export const PhotosPage: React.FC<PhotosPageProps> = ({
                 const totalMedia = (photo.media_url ? 1 : 0) + extras.length;
                 const isVideo = photo.media_type === 'video';
                 const thumbUrl = photo.media_url
-                  ? CloudinaryAdapter.getOptimizedUrl(photo.media_url, 'f_auto,q_auto,w_480')
+                  ? CloudinaryAdapter.getOptimizedUrl(photo.media_url, 'f_auto,q_auto:best,w_960')
                   : '';
 
                 return (
@@ -150,22 +150,32 @@ export const PhotosPage: React.FC<PhotosPageProps> = ({
                   >
                     <div className="card-media-wrapper">
                       {photo.media_url ? (
-                        isVideo ? (
-                          <video
-                            className="card-media-video"
-                            src={photo.media_url}
-                            preload="metadata"
-                            muted
-                            playsInline
-                          />
-                        ) : (
-                          <img
-                            className="card-media-img"
-                            src={thumbUrl}
-                            alt={photo.title || ''}
-                            loading="lazy"
-                          />
-                        )
+                        <>
+                          {!isVideo && (
+                            <div
+                              className="card-media-blur-bg"
+                              style={{ backgroundImage: `url("${thumbUrl}")` }}
+                              aria-hidden="true"
+                            />
+                          )}
+                          {isVideo ? (
+                            <video
+                              className="card-media-video"
+                              src={photo.media_url}
+                              preload="metadata"
+                              muted
+                              playsInline
+                            />
+                          ) : (
+                            <img
+                              className="card-media-img"
+                              src={thumbUrl}
+                              alt={photo.title || ''}
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          )}
+                        </>
                       ) : (
                         <div
                           style={{

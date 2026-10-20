@@ -13,7 +13,7 @@ export const BackgroundLayers: React.FC<BackgroundLayersProps> = ({
   isClearBg,
 }) => {
   const hasBg = Boolean(bgImage && bgImage.trim());
-  const crispUrl = hasBg ? CloudinaryAdapter.getOptimizedUrl(bgImage!, 'f_auto,q_auto,w_1920') : '';
+  const crispUrl = hasBg ? CloudinaryAdapter.getOptimizedUrl(bgImage!, 'f_auto,q_auto:best,w_2560') : '';
   const blurredUrl = hasBg ? CloudinaryAdapter.getOptimizedUrl(bgImage!, 'f_auto,q_auto,w_480') : '';
 
   return (

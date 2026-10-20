@@ -962,15 +962,40 @@ button, input, textarea {
   position: relative;
   width: 100%;
   height: calc(260 * var(--u));
-  background: #000000;
+  background: rgba(3, 8, 11, 0.85);
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-media-blur-bg {
+  position: absolute;
+  inset: -14px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(22px) brightness(0.38) saturate(1.2);
+  transform: scale(1.15);
+  pointer-events: none;
+  opacity: 0.85;
 }
 
 .card-media-img,
 .card-media-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  image-rendering: auto;
+  transition: transform 0.25s ease;
+}
+
+.photo-card-glass:hover .card-media-img {
+  transform: scale(1.02);
 }
 
 .card-badge {
@@ -1353,29 +1378,41 @@ div#memoryGate:nth-of-type(1) > div:nth-of-type(5) > p:nth-of-type(2) {
 .lightbox-content-box {
   position: relative;
   z-index: 5;
-  max-width: 90vw;
-  max-height: 90dvh;
+  max-width: 95vw;
+  max-height: 94dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  gap: 14px;
 }
 
 .lightbox-media-wrap {
   position: relative;
-  max-width: 100%;
-  max-height: 72dvh;
-  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: min(92vw, 1300px);
+  max-height: 76dvh;
+  width: auto;
+  height: auto;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85);
+  background: rgba(3, 8, 11, 0.6);
 }
 
 .lightbox-media-wrap img,
-.lightbox-media-wrap video {
-  max-width: 100%;
-  max-height: 72dvh;
+.lightbox-media-wrap video,
+.lightbox-media-element {
   display: block;
+  max-width: min(92vw, 1300px);
+  max-height: 76dvh;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  image-rendering: auto;
+  border-radius: 16px;
 }
 
 .lb-arrow {
@@ -1595,14 +1632,19 @@ div#memoryGate:nth-of-type(1) > div:nth-of-type(5) > p:nth-of-type(2) {
   height: 80px;
   border-radius: 8px;
   overflow: hidden;
-  background: #000000;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .preview-thumb-item img,
 .preview-thumb-item video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 .preview-thumb-del {

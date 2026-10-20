@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { LightboxState } from '../types';
+import { CloudinaryAdapter } from '../services/cloudinary';
 
 interface LightboxProps {
   lightbox: LightboxState;
@@ -47,7 +48,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
         className="lightbox-blur-bg"
         id="lightboxBlurBg"
         style={{
-          backgroundImage: current?.type === 'image' ? `url("${current.url}")` : 'none',
+          backgroundImage: current?.type === 'image' ? `url("${CloudinaryAdapter.getHighResUrl(current.url)}")` : 'none',
         }}
         onClick={onClose}
       />
@@ -87,14 +88,16 @@ export const Lightbox: React.FC<LightboxProps> = ({
                 controls
                 autoPlay
                 playsInline
-                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                className="lightbox-media-element"
               />
             ) : (
               <img
                 key={current.url}
-                src={current.url}
+                src={CloudinaryAdapter.getHighResUrl(current.url)}
                 alt={lightbox.title}
-                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                className="lightbox-media-element"
+                loading="eager"
+                decoding="async"
               />
             )
           )}
